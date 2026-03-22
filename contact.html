@@ -76,18 +76,19 @@
 </head>
 <body>
   <header class="hero">
-    <img src="images/easytech-logo.png" alt="EasyTech Logo - Metro Vancouver Tech Support" loading="lazy">
+    <a href="index.html" aria-label="Go to EasyTech home"><img src="images/easytech-logo.png" alt="EasyTech Logo - Metro Vancouver IT Consultant" width="260" height="130" loading="lazy"></a>
+    <div style="margin-bottom:0.5rem;font-size:1.1rem;font-weight:600;z-index:1;position:relative;">BC Registered Business</div>
     <h1>Contact EasyTech</h1>
     <p class="tagline">Send us your request and we’ll reply quickly.</p>
     <p>Fast local IT support in Coquitlam, Burnaby, Surrey & Vancouver.</p>
     <a class="cta" href="https://wa.me/18194342389">Message on WhatsApp</a>
-          <div style="position:relative;top:12px;left:0;width:100%;max-width:1100px;margin-top:12px;">
-        <nav aria-label="Breadcrumb" style="text-align:left;">
-          <a href="index.html" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;">Home</a>
-          <span style="color:rgba(255,255,255,0.85);margin:0 8px;">›</span>
-          <span style="color:rgba(255,255,255,0.95);">Contact Us</span>
-        </nav>
-      </div>
+    <div style="position:relative;top:12px;left:0;width:100%;max-width:1100px;margin-top:12px;">
+      <nav aria-label="Breadcrumb" style="text-align:left;">
+        <a href="index.html" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;">Home</a>
+        <span style="color:rgba(255,255,255,0.85);margin:0 8px;">›</span>
+        <span style="color:rgba(255,255,255,0.95);">Contact Us</span>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
@@ -113,6 +114,59 @@
     </div>
   </main>
 
+  <!-- FAQ SECTION -->
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How do I contact EasyTech?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>You can call or WhatsApp EasyTech at <a href="tel:+18194342389">819-434-2389</a>. Operating hours are Monday to Sunday, 9:00 AM to 9:00 PM.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Do you offer same-day service?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! EasyTech offers same-day IT consultant in many cases. Call or WhatsApp to check availability for your specific service needs.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What areas do you serve?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>We provide local tech support in Coquitlam, Burnaby, Surrey, and Vancouver in Metro Vancouver.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How much does it cost?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>EasyTech offers flat rates of $40–$160 per service, with bundles available for multiple services. First-time clients get 20% off!</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I book a service online?</span>
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, you can book a service by calling, WhatsApp, or using this contact form. Our team will confirm your appointment and discuss service details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
@@ -120,27 +174,31 @@
         <img src="images/easytech-logo.png" alt="EasyTech Logo" class="footer-logo" loading="lazy">
         <p>EasyTech - Local IT Consultant for Metro Vancouver</p>
       </div>
-      <div class="footer-links">
+      <nav class="footer-links">
         <a href="index.html">Home</a>
-        <a href="senior-tech-support.html">Senior Support</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a href="contact.html">Contact</a>
-      </div>
+        <a href="senior-tech-support.html">Senior Support</a>
+      </nav>
       <div class="footer-contact">
-        <a href="https://wa.me/18194342389">WhatsApp: 819-434-2389</a>
-        <a href="mailto:info@easytechvancouver.ca">Email: info@easytechvancouver.ca</a>
-      </div>
-      <div class="footer-social">
-        <a href="https://www.facebook.com/groups/easytechmetrovancouver/" target="_blank" rel="noopener">
-          <img src="images/facebook-icon.png" alt="Facebook" width="32" height="32">
-        </a>
-        <a href="https://www.instagram.com/easytechvancouver" target="_blank" rel="noopener">
-          <img src="images/instagram-icon.png" alt="Instagram" width="32" height="32">
-        </a>
+        <a href="tel:+18194342389">📞 Call: 819-434-2389</a>
+        <a href="https://wa.me/18194342389" target="_blank" rel="noopener">💬 WhatsApp</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2026 EasyTech Vancouver. All rights reserved. | BC Registered Business
-    </div>
+    <nav class="footer-social" aria-label="Social media links">
+      <a href="https://www.facebook.com/profile.php?id=61587106324816" target="_blank" rel="noopener" aria-label="Visit EasyTech on Facebook">
+          <img src="images/facebook-icon.png" alt="EasyTech Facebook" width="32" height="32" loading="lazy">
+      </a>
+      <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
+          <img src="images/google-icon.png" alt="EasyTech Google Business" width="32" height="32" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow EasyTech on Instagram">
+          <img src="images/instagram-icon.png" alt="EasyTech Instagram" width="32" height="32" loading="lazy">
+      </a>
+    </nav>
+    <p class="footer-bottom">© 2026 EasyTech. All rights reserved. | Local IT consultant in Coquitlam, Burnaby, Surrey & Vancouver<br>BC Business Number: 703568360BC0001 | Registered Business in British Columbia</p>
   </footer>
 
   <script>
