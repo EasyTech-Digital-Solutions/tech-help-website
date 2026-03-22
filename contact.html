@@ -201,6 +201,20 @@
     <p class="footer-bottom">© 2026 EasyTech. All rights reserved. | Local IT consultant in Coquitlam, Burnaby, Surrey & Vancouver<br>BC Business Number: 703568360BC0001 | Registered Business in British Columbia</p>
   </footer>
 
+  <!-- FAQ ACCORDION SCRIPT -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = btn.closest('.faq-item');
+        var open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+          openItem.classList.remove('open');
+        });
+        if (!open) item.classList.add('open');
+      });
+    });
+  </script>
+
   <script>
     const form = document.getElementById('contactForm');
     form.addEventListener('submit', async function (event) {
