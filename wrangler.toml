@@ -3,5 +3,5 @@ main = "cloudflare/contact-worker.js"
 compatibility_date = "2026-03-20"
 
 [vars]
-SEND_FROM = "admin@easytechvancouver.ca"
+SEND_FROM = "info@easytechvancouver.ca"
 SEND_TO = "admin@easytechvancouver.ca"
