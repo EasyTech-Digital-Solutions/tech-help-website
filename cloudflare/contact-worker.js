@@ -6,8 +6,8 @@ export default {
 
 async function handleRequest(request, env) {
   const SENDGRID_API_KEY = env?.SENDGRID_API_KEY;
-  const SEND_FROM = env?.SEND_FROM || 'abhijeet.karmaker@gmail.com';
-  const SEND_TO = env?.SEND_TO || 'abhijeet.karmaker@gmail.com';
+  const SEND_FROM = env?.SEND_FROM || 'admin@easytechvancouver.ca';
+  const SEND_TO = env?.SEND_TO || 'admin@easytechvancouver.ca';
   
   if (!SENDGRID_API_KEY) {
     return new Response(JSON.stringify({ error: 'SendGrid API key not configured' }), { 
