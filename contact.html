@@ -127,7 +127,13 @@
   <main class="container">
     <div class="card">
       <form id="contactForm" name="contact" method="POST" action="/api/contact">
+
         <input type="hidden" name="form-name" value="contact">
+        <!-- Honeypot field: hidden from users, visible to bots -->
+        <div style="display:none;">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
 
         <label for="name">Full Name</label>
         <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -140,9 +146,13 @@
 
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Describe your issue or question" required></textarea>
-
+        <!-- Google reCAPTCHA v2 -->
+        <div style="margin: 18px 0;">
+          <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+        </div>
         <button type="submit">Send Request</button>
       </form>
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       <p class="small">Your request will be sent to our support team and you’ll receive an immediate acknowledgement message in your inbox.</p>
     </div>
   </main>

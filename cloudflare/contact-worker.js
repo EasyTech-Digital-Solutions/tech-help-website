@@ -51,6 +51,45 @@ async function handleRequest(request, env) {
     });
   }
 
+  // Honeypot check
+  if (body.website && body.website.trim() !== "") {
+    return new Response(JSON.stringify({ error: 'Spam detected' }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+
+  // reCAPTCHA verification
+  const recaptchaToken = body["g-recaptcha-response"];
+  if (!recaptchaToken) {
+    return new Response(JSON.stringify({ error: 'reCAPTCHA required' }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+  const recaptchaSecret = env.RECAPTCHA_SECRET_KEY;
+  const recaptchaVerify = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `secret=${encodeURIComponent(recaptchaSecret)}&response=${encodeURIComponent(recaptchaToken)}`
+  });
+  const recaptchaResult = await recaptchaVerify.json();
+  if (!recaptchaResult.success) {
+    return new Response(JSON.stringify({ error: 'reCAPTCHA failed' }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+  }
+
   const { name = 'Anonymous', email, phone = '', message } = body;
 
   const ownerMessage = {
