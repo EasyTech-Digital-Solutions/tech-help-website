@@ -152,16 +152,36 @@
       <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
           e.preventDefault();
+          const form = e.target;
           grecaptcha.enterprise.ready(async () => {
             const token = await grecaptcha.enterprise.execute('6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI', {action: 'contact'});
-            // Add token to form and submit
-            let form = e.target;
-            let input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'g-recaptcha-response';
-            input.value = token;
-            form.appendChild(input);
-            form.submit();
+            // Collect form data
+            const data = {
+              name: form.name.value,
+              email: form.email.value,
+              phone: form.phone.value,
+              message: form.message.value,
+              website: form.website.value,
+              'g-recaptcha-response': token
+            };
+            // Send as JSON
+            fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            })
+            .then(async response => {
+              const result = await response.json().catch(() => ({}));
+              if (response.ok && result.success) {
+                alert('Your request was sent successfully!');
+                form.reset();
+              } else {
+                alert(result.error || 'There was an error sending your request.');
+              }
+            })
+            .catch(() => {
+              alert('There was an error sending your request.');
+            });
           });
         });
       </script>
