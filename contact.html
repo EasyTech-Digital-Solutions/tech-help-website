@@ -175,7 +175,6 @@
             .then(async response => {
               const result = await response.json().catch(() => ({}));
               if (response.ok && result.success) {
-                // Replace form with thank you message
                 form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
               } else {
                 msgDiv.textContent = result.error || 'There was an error sending your request.';
