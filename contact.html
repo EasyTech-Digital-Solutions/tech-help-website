@@ -106,6 +106,7 @@
     .faq-item.open .faq-answer {max-height:500px;padding:1.2rem;}
     .faq-item.open .faq-toggle {transform:rotate(45deg);}
   </style>
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI"></script>
 </head>
 <body>
   <header class="hero">
@@ -146,13 +147,24 @@
 
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Describe your issue or question" required></textarea>
-        <!-- Google reCAPTCHA v2 -->
-        <div style="margin: 18px 0;">
-          <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-        </div>
         <button type="submit">Send Request</button>
       </form>
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI', {action: 'contact'});
+            // Add token to form and submit
+            let form = e.target;
+            let input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'g-recaptcha-response';
+            input.value = token;
+            form.appendChild(input);
+            form.submit();
+          });
+        });
+      </script>
       <p class="small">Your request will be sent to our support team and you’ll receive an immediate acknowledgement message in your inbox.</p>
     </div>
   </main>
