@@ -128,6 +128,7 @@
   <main class="container">
     <div class="card">
       <form id="contactForm" name="contact" method="POST" action="/api/contact">
+  <div id="form-message" style="color:#e74c3c;font-weight:600;margin-bottom:1rem;display:none;"></div>
 
         <input type="hidden" name="form-name" value="contact">
         <!-- Honeypot field: hidden from users, visible to bots -->
@@ -153,9 +154,11 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
           e.preventDefault();
           const form = e.target;
+          const msgDiv = document.getElementById('form-message');
+          msgDiv.style.display = 'none';
+          msgDiv.textContent = '';
           grecaptcha.enterprise.ready(async () => {
             const token = await grecaptcha.enterprise.execute('6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI', {action: 'contact'});
-            // Collect form data
             const data = {
               name: form.name.value,
               email: form.email.value,
@@ -164,7 +167,6 @@
               website: form.website.value,
               'g-recaptcha-response': token
             };
-            // Send as JSON
             fetch('/api/contact', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -173,14 +175,16 @@
             .then(async response => {
               const result = await response.json().catch(() => ({}));
               if (response.ok && result.success) {
-                alert('Your request was sent successfully!');
-                form.reset();
+                // Replace form with thank you message
+                form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
               } else {
-                alert(result.error || 'There was an error sending your request.');
+                msgDiv.textContent = result.error || 'There was an error sending your request.';
+                msgDiv.style.display = 'block';
               }
             })
             .catch(() => {
-              alert('There was an error sending your request.');
+              msgDiv.textContent = 'There was an error sending your request.';
+              msgDiv.style.display = 'block';
             });
           });
         });

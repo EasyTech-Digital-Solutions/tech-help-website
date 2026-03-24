@@ -41,6 +41,7 @@ async function handleRequest(request, env) {
   }
 
   const body = await request.json().catch(() => null);
+  // Basic validation
   if (!body || !body.email || !body.message) {
     return new Response(JSON.stringify({ error: 'Email and message are required' }), { 
       status: 400,
@@ -50,7 +51,6 @@ async function handleRequest(request, env) {
       },
     });
   }
-
   // Honeypot check
   if (body.website && body.website.trim() !== "") {
     return new Response(JSON.stringify({ error: 'Spam detected' }), {
@@ -61,7 +61,6 @@ async function handleRequest(request, env) {
       },
     });
   }
-
   // reCAPTCHA verification
   const recaptchaToken = body["g-recaptcha-response"];
   if (!recaptchaToken) {
@@ -89,8 +88,59 @@ async function handleRequest(request, env) {
       },
     });
   }
-
-  const { name = 'Anonymous', email, phone = '', message } = body;
+  // If we reach here, all checks passed, proceed to send emails
+  try {
+    const { name = 'Anonymous', email, phone = '', message } = body;
+    const ownerMessage = {
+      personalizations: [{ to: [{ email: SEND_TO }] }],
+      from: { email: SEND_FROM },
+      reply_to: { email },
+      subject: `New EasyTech Inquiry from ${name}`,
+      content: [{
+        type: 'text/html',
+        value: `
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+          <p><strong>Message:</strong></p>
+          <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>
+        `,
+      }],
+    };
+    const autoReply = {
+      personalizations: [{ to: [{ email }] }],
+      from: { email: SEND_FROM },
+      subject: 'Thanks for contacting EasyTech — request received',
+      content: [{
+        type: 'text/html',
+        value: `
+          <p>Hi ${escapeHtml(name)},</p>
+          <p>Thanks for your message. We received your request and will reply within 1 business hour.</p>
+          <p>Your message:</p>
+          <blockquote>${escapeHtml(message).replace(/\n/g, '<br>')}</blockquote>
+          <p>If it’s urgent, please WhatsApp <a href="https://wa.me/18194342389">819-434-2389</a>.</p>
+          <p>Best regards,<br>EasyTech Vancouver</p>
+        `,
+      }],
+    };
+    await sendSendGrid(ownerMessage, SENDGRID_API_KEY);
+    await sendSendGrid(autoReply, SENDGRID_API_KEY);
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: 'Send failed', details: err.message }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
 
   const ownerMessage = {
     personalizations: [{ to: [{ email: SEND_TO }] }],
