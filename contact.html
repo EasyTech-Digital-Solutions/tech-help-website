@@ -334,7 +334,9 @@
 
         if (response.ok) {
           form.reset();
-          alert('Sent! We have emailed you confirmation and received your request.');
+          const msgDiv = document.getElementById('form-message');
+          msgDiv.textContent = 'Sent! We have emailed you confirmation and received your request.';
+          msgDiv.style.display = 'block';
         } else {
           try {
             const err = await response.json();
