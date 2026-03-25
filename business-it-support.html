@@ -34,7 +34,7 @@
     "description": "Professional business tech support and IT consulting for small companies in Metro Vancouver",
     "url": "https://easytechvancouver.ca/business-it-support",
     "telephone": "+18194342389",
-    "priceRange": "$50–$200",
+    "priceRange": "$85–$300",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Coquitlam",
@@ -93,7 +93,7 @@
         "name": "How much does business tech support cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Business IT support pricing ranges from $50–$200 per hour depending on the scope of work. We offer free consultations to assess your business needs."
+          "text": "Business IT support pricing ranges from $85–$300 per hour depending on the scope of work. We offer free consultations to assess your business needs."
         }
       }
     ]
@@ -174,13 +174,14 @@
     }
 
     .cta-secondary {
-      background: rgba(255, 255, 255, 0.2);
+      background: #3498db;
       color: #fff;
-      border: 2px solid #fff;
+      border: 2px solid #3498db;
     }
 
     .cta-secondary:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: #2980b9;
+      border-color: #2980b9;
     }
 
     /* MAIN CONTENT */
@@ -287,9 +288,14 @@
 
     .footer-brand h4 { margin: 0; color: #1abc9c; }
     .footer-brand p { margin: 0.3rem 0; opacity: 0.9; }
-    .footer-section h4 { margin: 0 0 1rem; color: #1abc9c; }
-    .footer-section a { display: block; color: #fff; text-decoration: none; margin: 0.4rem 0; transition: 0.3s; }
-    .footer-section a:hover { color: #2ecc71; }
+    .footer-logo { height: 60px; width: auto; margin-bottom: 0.5rem; }
+    .footer-links, .footer-contact { display: contents; }
+    .footer-links a, .footer-contact a { display: block; margin: 0.4rem 0; color: #1abc9c; text-decoration: none; transition: 0.3s; }
+    .footer-links a:hover, .footer-contact a:hover { color: #2ecc71; }
+    .footer-social { margin-top: 1rem; display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .footer-social a { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+    .footer-social img { transition: transform 0.3s, opacity 0.3s; }
+    .footer-social img:hover { transform: scale(1.3); filter: drop-shadow(0 0 6px #1abc9c); }
 
     .footer-bottom {
       text-align: center;
@@ -392,7 +398,7 @@
     </article>
     <article class="service-card">
       <h3>✅ Affordable Rates</h3>
-      <p>Professional IT support without enterprise pricing. Hourly rates $50–$200 depending on complexity.</p>
+      <p>Professional IT support without enterprise pricing. Hourly rates $85–$300 depending on complexity.</p>
     </article>
     <article class="service-card">
       <h3>✅ Fast Response</h3>
@@ -412,7 +418,7 @@
   <section aria-label="Pricing information" role="region">
     <h3 style="text-align: center;">Business IT Support Pricing</h3>
     <div class="highlight-box">
-      <strong>Hourly Rates:</strong> $50/hour for simple tech help, $100/hour for moderate support, $200/hour for complex IT projects and consulting.<br><br>
+      <strong>Hourly Rates:</strong> $85/hour for simple tech help, $150/hour for moderate support, $300/hour for complex IT projects and consulting.<br><br>
       <strong>Free Consultation:</strong> Contact us for a free IT assessment and custom quote for your business needs.
     </div>
   </section>
@@ -432,25 +438,36 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
-      <h4>EasyTech</h4>
-      <p>Business tech support in Metro Vancouver</p>
+      <img src="images/easytech-logo.png" alt="EasyTech Logo" class="footer-logo" loading="lazy">
+      <p>EasyTech - Local IT Consultant for Metro Vancouver</p>
     </div>
-    <div class="footer-section">
-      <h4>Services</h4>
-      <a href="#">Business IT Support</a>
-      <a href="index.html#services">General Services</a>
-      <a href="senior-tech-support.html">Senior Tech Help</a>
-    </div>
-    <div class="footer-section">
-      <h4>Contact</h4>
-      <a href="tel:+18194342389">☎️ Call: 819-434-2389</a>
-      <a href="contact.html">📧 Send Request</a>
-      <a href="#">Service Areas</a>
+    <nav class="footer-links">
+      <a href="#services">Services</a>
+      <a href="business-it-support.html">Business IT Support</a>
+      <a href="#pricing">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="senior-tech-support.html">Senior Support</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="tel:+18194342389">📞 Call: 819-434-2389</a>
+      <a href="https://wa.me/18194342389" target="_blank" rel="noopener">💬 WhatsApp</a>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 EasyTech. All rights reserved. | Business tech support in Coquitlam, Burnaby, Surrey & Vancouver</p>
-  </div>
+
+  <!-- Social Links -->
+  <nav class="footer-social" aria-label="Social media links">
+      <a href="https://www.facebook.com/profile.php?id=61587106324816" target="_blank" rel="noopener" aria-label="Visit EasyTech on Facebook">
+          <img src="images/facebook-icon.png" alt="EasyTech Facebook" width="32" height="32" loading="lazy">
+      </a>
+      <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
+          <img src="images/google-icon.png" alt="EasyTech Google Business" width="32" height="32" loading="lazy">
+      </a>
+      <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow EasyTech on Instagram">
+          <img src="images/instagram-icon.png" alt="EasyTech Instagram" width="32" height="32" loading="lazy">
+      </a>
+  </nav>
+
+  <p class="footer-bottom">© 2026 EasyTech. All rights reserved. | Local IT consultant in Coquitlam, Burnaby, Surrey & Vancouver<br>BC Business Number: 703568360BC0001 | Registered Business in British Columbia</p>
 </footer>
 
 </body>
