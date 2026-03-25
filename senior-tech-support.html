@@ -112,10 +112,25 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .cta {
+    background:#2ecc71;
+    color:#fff;
+    padding:1rem 1.6rem;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+    z-index:1;
+    position:relative;
+    display:inline-block;
+  }
+  .cta:hover {
+    background:#27ae60;
+  }
   .cta-secondary {
     background: #3498db;
     color: #fff;
-    padding: 0.9rem 1.4rem;
+    padding: 1rem 1.6rem;
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
@@ -193,8 +208,8 @@
   .faq-item.open .faq-toggle {transform:rotate(45deg);}
 
   /* CONTACT */
-  .contact {background: linear-gradient(135deg,#1abc9c,#3498db);color:#fff;text-align:center;padding:3rem 1rem;border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;margin-top:3rem;}
-  .contact a {color:#fff;font-weight:bold;text-decoration:none;}
+  .contact {background: linear-gradient(135deg,#1abc9c,#3498db);color:#fff;text-align:center;padding:3rem 1rem;border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;margin-top:3rem;}  .contact h2 {margin-bottom:0.8rem;}
+  .contact p {margin:0.3rem 0;}  .contact a {color:#fff;font-weight:bold;text-decoration:none;}
   .contact a:hover {color:#2ecc71;}
   .contact .cta {display:inline-block;background:#2ecc71;color:#fff;padding:1rem 1.6rem;border-radius:10px;margin-top:1rem;font-weight:bold;text-decoration:none;transition:0.3s;}
   .contact .cta:hover{background:#27ae60;}
@@ -372,12 +387,12 @@
   </section>
 
   <!-- CONTACT -->
-  <section aria-label="Contact information" role="region" style="text-align: center; margin: 3rem 0;">
+  <section class="contact" aria-label="Contact information" role="region">
   <h2>Ready for Patient, Senior-Friendly Tech Help?</h2>
-  <p style="font-size: 1.15rem; color: #666;">Our tech experts are here to help. Contact EasyTech today.</p>
+  <p>Our tech experts are here to help. Contact EasyTech today.</p>
   <div class="cta-group">
-    <a href="tel:+18194342389" class="cta" style="font-size: 1.2rem; background: #2ecc71; color: #fff; padding: 1rem 1.6rem; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.3s; display: inline-block;">📞 Call: 819-434-2389</a>
-    <a href="https://wa.me/18194342389" class="cta-secondary" style="font-size: 1.2rem;" target="_blank" rel="noopener">💬 Message on WhatsApp</a>
+    <a href="tel:+18194342389" class="cta">📞 Call: 819-434-2389</a>
+    <a href="https://wa.me/18194342389" class="cta-secondary" target="_blank" rel="noopener">💬 Message on WhatsApp</a>
   </div>
   <p style="color: #888; margin-top: 1rem;">Available 9 AM – 9 PM, Monday to Sunday</p>
   </section>

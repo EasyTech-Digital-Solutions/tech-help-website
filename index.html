@@ -287,6 +287,11 @@ body {margin:0;font-family:'Roboto',sans-serif;background:#f4f7fa;color:#333;lin
 @keyframes pulse {0%,100% {transform:scale(1);} 50% {transform:scale(1.05);}}
 @media(max-width:600px){
     .hero img {height:120px;}
+    .cta-group {flex-direction: column;}
+    .cta, .cta-secondary {width: 90%; text-align: center; display: block; margin-left: 0;}
+    .hero .cta-secondary {margin-left: 0;}
+    .contact .cta {width: 90%; margin: 0.5rem auto !important; display: block; min-width: unset;}
+    .services {grid-template-columns: 1fr;}
 }
 /* SERVICES */
 section h2 {color:#3498db;text-align:center;margin:3rem 0 2rem;font-weight:700;}

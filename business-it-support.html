@@ -153,36 +153,44 @@
       justify-content: center;
     }
 
-    .cta, .cta-secondary {
+    .cta {
       padding: 1rem 1.6rem;
       border-radius: 10px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-
-    .cta {
       background: #2ecc71;
       color: #fff;
+      transition: 0.3s;
+      display: inline-block;
     }
 
     .cta:hover {
       background: #27ae60;
-      transform: translateY(-2px);
     }
 
     .cta-secondary {
+      padding: 1rem 1.6rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
       background: #3498db;
       color: #fff;
-      border: 2px solid #3498db;
+      transition: 0.3s;
+      display: inline-block;
     }
 
     .cta-secondary:hover {
       background: #2980b9;
-      border-color: #2980b9;
     }
+
+    /* CONTACT */
+    .contact {background: linear-gradient(135deg,#1abc9c,#3498db);color:#fff;text-align:center;padding:3rem 1rem;border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;margin-top:3rem;}
+    .contact h2 {margin-bottom:0.8rem;}
+    .contact p {margin:0.3rem 0;}
+    .contact a {color:#fff;font-weight:bold;text-decoration:none;}
+    .contact a:hover {color:#2ecc71;}
+    .contact .cta {display:inline-block;background:#2ecc71;color:#fff;padding:1rem 1.6rem;border-radius:10px;margin:0.75rem 0.5rem 0 0.5rem;min-width:200px;font-weight:bold;text-decoration:none;transition:0.3s;}
+    .contact .cta:hover{background:#27ae60;}
 
     /* MAIN CONTENT */
     main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
@@ -364,6 +372,7 @@
       .hero img { height: 120px; }
       .cta-group { flex-direction: column; }
       .cta, .cta-secondary { width: 100%; text-align: center; }
+      .contact .cta { width: 100%; margin: 0.5rem auto !important; display: block; min-width: unset; }
       .services-grid { grid-template-columns: 1fr; }
       .footer-container { flex-direction: column; text-align: center; }
     }
@@ -475,14 +484,14 @@
     </div>
   </section>
 
-  <section aria-label="Contact information" role="region" style="text-align: center; margin: 3rem 0;">
+  <section class="contact" aria-label="Contact information" role="region">
     <h2>Ready for Professional Business Tech Support?</h2>
-    <p style="font-size: 1.15rem; color: #666;">Don't let tech issues slow down your business. Contact EasyTech today.</p>
+    <p>Don't let tech issues slow down your business. Contact EasyTech today.</p>
     <div class="cta-group">
-      <a href="tel:+18194342389" class="cta" style="font-size: 1.2rem;">📞 Call: 819-434-2389</a>
-      <a href="contact.html" class="cta-secondary" style="font-size: 1.2rem;">📧 Email Request</a>
+      <a href="tel:+18194342389" class="cta">📞 Call: 819-434-2389</a>
+      <a href="contact.html" class="cta-secondary">📧 Email Request</a>
     </div>
-    <p style="color: #888; margin-top: 1rem;">Available 9 AM – 9 PM, Monday to Sunday</p>
+    <p style="color: #e8e8e8; margin-top: 1rem;">Available 9 AM – 9 PM, Monday to Sunday</p>
   </section>
 
 </main>

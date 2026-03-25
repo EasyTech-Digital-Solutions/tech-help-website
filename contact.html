@@ -56,7 +56,13 @@
     .hero .cta-secondary {background:#3498db; margin-left:0.75rem;}
     .hero .cta-secondary:hover {background:#2980b9;}
     @keyframes pulse {0%,100% {transform:scale(1);} 50% {transform:scale(1.05);}}
-    @media(max-width:600px){.hero img {height:120px;}.footer-container{flex-direction:column;align-items:center;text-align:center;}}
+    @media(max-width:600px){
+      .hero img {height:120px;}
+      .cta-group {flex-direction: column;}
+      .cta, .cta-secondary {width: 90%; text-align: center; display: block; margin-left: 0;}
+      .hero .cta-secondary {margin-left: 0;}
+      .footer-container {flex-direction: column; align-items: center; text-align: center;}
+    }
 
     /* FOOTER */
     .footer {background: linear-gradient(135deg,#111,#222,#333);color:#fff;padding:3rem 1rem 1rem;border-top-left-radius:25px;border-top-right-radius:25px;box-shadow:0 -6px 20px rgba(0,0,0,0.25);font-size:0.95rem;}
