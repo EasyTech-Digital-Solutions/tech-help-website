@@ -207,31 +207,40 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
 
     .service-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: linear-gradient(145deg, #ffffff, #f1f4f9);
+      border-radius: 15px;
+      padding: 1.6rem;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s, box-shadow 0.4s, opacity 0.6s;
+      opacity: 0;
+    }
+
+    .service-card.visible {
+      opacity: 1;
     }
 
     .service-card:hover {
       transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
     .service-card h3 {
-      margin-top: 0;
+      margin-top: 0.8rem;
       color: #1abc9c;
     }
 
     .service-card p {
       color: #555;
       line-height: 1.8;
+      opacity: 0.85;
     }
 
     .highlight-box {
@@ -514,6 +523,17 @@
 
 <!-- FLOATING WHATSAPP BUTTON -->
 <a id="whatsapp-btn" href="https://wa.me/18194342389" target="_blank">💬</a>
+
+<!-- SERVICE CARD ANIMATION SCRIPT -->
+<script>
+const serviceCards = document.querySelectorAll('.service-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+},{threshold:0.1});
+serviceCards.forEach(card => observer.observe(card));
+</script>
 
 </body>
 </html>
