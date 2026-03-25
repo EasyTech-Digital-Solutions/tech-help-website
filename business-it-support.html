@@ -124,7 +124,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 450px;
+      min-height: 400px;
     }
 
     .hero::after {
@@ -139,9 +139,9 @@
       z-index: 0;
     }
 
-    .hero img { height: 280px; width: auto; margin-bottom: 1.5rem; z-index: 1; position: relative; }
+    .hero img { height: 250px; width: auto; margin-bottom: 1.5rem; z-index: 1; position: relative; }
     .hero h1 { font-size: clamp(2rem, 6vw, 3.5rem); margin: 0.5rem 0; z-index: 1; position: relative; font-weight: 700; }
-    .hero p { font-size: 1.3rem; margin: 1rem 0; opacity: 0.95; z-index: 1; position: relative; }
+    .hero p { font-size: 1.2rem; margin: 1rem 0; opacity: 0.95; z-index: 1; position: relative; }
     
     .cta-group {
       z-index: 1;
@@ -154,8 +154,8 @@
     }
 
     .cta, .cta-secondary {
-      padding: 1rem 2rem;
-      border-radius: 8px;
+      padding: 1rem 1.6rem;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.1rem;
@@ -202,7 +202,7 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 2rem;
       margin: 2rem 0;
     }
@@ -216,7 +216,7 @@
     }
 
     .service-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.03);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     }
 
@@ -348,6 +348,7 @@
     @media (max-width: 600px) {
       .hero h1 { font-size: 2rem; }
       .hero p { font-size: 1.1rem; }
+      .hero img { height: 120px; }
       .cta-group { flex-direction: column; }
       .cta, .cta-secondary { width: 100%; text-align: center; }
       .services-grid { grid-template-columns: 1fr; }
