@@ -185,7 +185,11 @@
     }
 
     /* MAIN CONTENT */
-    .container { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+    
+    main > h2:first-of-type {
+      margin-top: 0;
+    }
     
     h2 {
       color: #1abc9c;
@@ -358,18 +362,26 @@
 </head>
 <body>
 
-<div class="hero">
-  <img src="images/easytech-logo.png" alt="EasyTech Business IT Support Logo">
+<header class="hero">
+  <a href="index.html" aria-label="Go to EasyTech home"><img src="images/easytech-logo.png" alt="EasyTech Custom IT Support Logo" width="260" height="130" loading="lazy"></a>
+  <div style="margin-bottom:0.5rem;font-size:1.1rem;font-weight:600;z-index:1;position:relative;">BC Registered Business</div>
   <h1>Business Tech Support & IT Services</h1>
   <p>Professional IT consultant for small businesses in Metro Vancouver</p>
-  <p style="font-size: 1.1rem; opacity: 0.9;">Same-day support • Affordable rates • Local expertise</p>
+  <p>Same-day support • Affordable rates • Local expertise</p>
   <div class="cta-group">
-    <a href="tel:+18194342389" class="cta">Call Now: 819-434-2389</a>
-    <a href="contact.html" class="cta-secondary">Get Free Consultation</a>
+    <a href="tel:+18194342389" class="cta">📞 Call: 819-434-2389</a>
+    <a href="contact.html" class="cta-secondary">📧 Get Free Consultation</a>
   </div>
-</div>
+  <div style="position:relative;top:12px;left:0;width:100%;max-width:1100px;margin-top:12px;">
+    <nav aria-label="Breadcrumb" style="text-align:left;">
+      <a href="index.html" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;">Home</a>
+      <span style="color:rgba(255,255,255,0.85);margin:0 8px;">›</span>
+      <span style="color:rgba(255,255,255,0.95);">Business IT Support</span>
+    </nav>
+  </div>
+</header>
 
-<main class="container">
+<main>
 
   <h2>Business IT Support for Small Companies</h2>
   <p style="text-align: center; font-size: 1.1rem; color: #666;">EasyTech provides professional, affordable IT support and consulting for small businesses across Coquitlam, Burnaby, Surrey, Vancouver and surrounding areas. Whether you need network setup, computer troubleshooting, or employee training—we're here to help your business thrive.</p>
