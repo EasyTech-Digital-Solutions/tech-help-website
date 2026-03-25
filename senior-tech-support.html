@@ -102,8 +102,34 @@
       position:relative;
   }
   .hero .cta:hover {background:#27ae60;}
+  .cta-group {
+    z-index: 1;
+    position: relative;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta-secondary {
+    background: #3498db;
+    color: #fff;
+    padding: 0.9rem 1.4rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+  }
+  .cta-secondary:hover {
+    background: #2980b9;
+  }
   @media(max-width:600px){
       .hero img {height:120px;}
+      .cta-group { flex-direction: column; }
+      .hero .cta, .cta-secondary { width: 90%; text-align: center; }
   }
   /* SERVICES */
   section h2 {color:#3498db;text-align:center;margin:3rem 0 2rem;font-weight:700;}
@@ -214,7 +240,10 @@
       <h1>Senior-Friendly IT Consultant</h1>
       <p class="tagline">Patient, easy-to-understand IT consultant for seniors across Coquitlam, Burnaby, Surrey & Vancouver.</p>
       <p>In-home help with phones, computers, Wi‑Fi, Smart TVs and online safety.</p>
-      <a class="cta" href="https://wa.me/18194342389">Message on WhatsApp</a>
+      <div class="cta-group">
+        <a href="tel:+18194342389" class="cta">Call Now: 819-434-2389</a>
+        <a href="contact.html" class="cta-secondary">Email Request</a>
+      </div>
       <div style="position:relative;top:12px;left:0;width:100%;max-width:1100px;margin-top:12px;">
         <nav aria-label="Breadcrumb" style="text-align:left;">
           <a href="index.html" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;">Home</a>
@@ -340,11 +369,14 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="contact" id="contact">
-  <h2>Contact EasyTech</h2>
-  <p>Call or WhatsApp: <a href="tel:+18194342389">819-434-2389</a></p>
-  <p>Available Monday – Sunday, 9:00 AM – 9:00 PM</p>
-  <a class="cta" href="https://wa.me/18194342389">Message on WhatsApp</a>
+  <section aria-label="Contact information" role="region" style="text-align: center; margin: 3rem 0;">
+  <h2>Ready for Patient, Senior-Friendly Tech Help?</h2>
+  <p style="font-size: 1.15rem; color: #666;">Our tech experts are here to help. Contact EasyTech today.</p>
+  <div class="cta-group">
+    <a href="tel:+18194342389" class="cta" style="font-size: 1.2rem;">📞 Call: 819-434-2389</a>
+    <a href="contact.html" class="cta-secondary" style="font-size: 1.2rem;">📧 Email Request</a>
+  </div>
+  <p style="color: #888; margin-top: 1rem;">Available 9 AM – 9 PM, Monday to Sunday</p>
   </section>
 
   </main>
