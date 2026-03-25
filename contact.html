@@ -115,6 +115,36 @@
     .faq-answer a:hover {color:#2ecc71;}
     .faq-item.open .faq-answer {max-height:500px;padding:1.2rem;}
     .faq-item.open .faq-toggle {transform:rotate(45deg);}
+    
+    /* FLOATING WHATSAPP BUTTON */
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      z-index: 1000;
+      animation: bounce 2s infinite;
+    }
+    #whatsapp-btn:hover {
+      background: linear-gradient(135deg, #2ecc71, #1abc9c);
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
   </style>
   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI"></script>
 </head>
