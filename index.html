@@ -29,6 +29,7 @@
 <meta property="og:image:type" content="image/png">
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <script type="application/ld+json">
 {
@@ -231,166 +232,6 @@
 }
 </script>
 
-<style>
-* {box-sizing:border-box;}
-body {margin:0;font-family:'Roboto',sans-serif;background:#f4f7fa;color:#333;line-height:1.6;scroll-behavior:smooth;}
-
-/* HERO BANNER */
-@keyframes gradientShift {
-  0% {background-position:0% 50%;}
-  50% {background-position:100% 50%;}
-  100% {background-position:0% 50%;}
-}
-.hero {
-    position: relative;
-    background: linear-gradient(135deg,#1abc9c,#3498db,#9b59b6,#e74c3c);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    color:#fff;
-    text-align:center;
-    padding:6rem 1rem;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    min-height:400px;
-}
-.hero::after {
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: url('images/hero-tech-bg.webp') center/cover no-repeat;
-    opacity:0.2;
-    z-index:0;
-}
-.hero img {height:250px;width:auto;margin-bottom:1rem;z-index:1;position:relative;}
-.hero h1 {font-size:clamp(2rem,6vw,3rem);margin:0.5rem 0;z-index:1;position:relative;}
-.hero .tagline {font-size:1.3rem;margin-bottom:1.5rem;opacity:0.9;z-index:1;}
-.hero p {font-size:1.2rem;margin-bottom:1rem;opacity:0.9;z-index:1;position:relative;}
-.hero .cta {
-    background:#2ecc71;
-    color:#fff;
-    padding:1rem 1.6rem;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:0.3s;
-    z-index:1;
-    position:relative;
-    animation: pulse 2s infinite;
-}
-.hero .cta:hover {background:#27ae60;}
-.hero .cta-secondary {background:#3498db; margin-left:0.75rem;}
-.hero .cta-secondary:hover {background:#2980b9;}
-@keyframes pulse {0%,100% {transform:scale(1);} 50% {transform:scale(1.05);}}
-@media(max-width:600px){
-    .hero img {height:120px;}
-    .cta-group {flex-direction: column;}
-    .cta, .cta-secondary {width: 90%; text-align: center; display: block; margin-left: 0;}
-    .hero .cta-secondary {margin-left: 0;}
-    .contact .cta {width: 90%; margin: 0.5rem auto !important; display: block; min-width: unset;}
-    .services {grid-template-columns: 1fr;}
-    .footer-links, .footer-contact {display: block !important;}
-    .footer-links a, .footer-contact a {display: inline; margin: 0 0.5rem;}
-}
-/* SERVICES */
-section h2 {color:#3498db;text-align:center;margin:3rem 0 2rem;font-weight:700;}
-h2 {font-size:2.2rem;}
-.services {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;max-width:1100px;margin:auto;padding:0 1rem;}
-.service {
-    background: linear-gradient(145deg,#ffffff,#f1f4f9);
-    padding:1.6rem;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 6px 18px rgba(0,0,0,0.08);
-    transition:transform 0.4s,box-shadow 0.4s,opacity 0.6s;
-    opacity:0;
-}
-.service.visible {opacity:1;}
-.service:hover {transform:translateY(-10px) scale(1.03);box-shadow:0 15px 30px rgba(0,0,0,0.2);}
-.service img {height:50px;margin-bottom:1rem;}
-.service h3 {margin-top:0.8rem;color:#1abc9c;}
-.service p {opacity:0.85;}
-.service .cta {margin-top:1rem;display:inline-block;background:#2ecc71;color:#fff;padding:0.8rem 1.2rem;border-radius:10px;text-decoration:none;transition:0.3s;}
-.service .cta:hover {background:#27ae60;}
-
-/* PRICING */
-.pricing {background:#ecf0f1;padding:2rem;border-radius:15px;text-align:center;margin:3rem auto;max-width:700px;}
-.pricing h2 {color:#1abc9c;}
-
-/* BLOG / LOCAL TIPS */
-#blog h2 {color:#3498db;margin:3rem 0 2rem;text-align:center;}
-
-/* FAQ SECTION */
-#faq {max-width:900px;margin:3rem auto;padding:0 1rem;}
-#faq h2 {color:#3498db;margin:3rem 0 2rem;text-align:center;}
-.faq-container {display:flex;flex-direction:column;gap:0.8rem;}
-.faq-item {border:1px solid #ddd;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.06);}
-.faq-question {
-    width:100%;
-    background:linear-gradient(135deg,#f8f9fa,#ecf0f1);
-    border:none;
-    padding:1.2rem;
-    text-align:left;
-    cursor:pointer;
-    font-size:1rem;
-    font-weight:600;
-    color:#1abc9c;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    transition:background 0.3s;
-}
-.faq-question:hover {background:linear-gradient(135deg,#ecf0f1,#e0e6ed);}
-.faq-toggle {font-size:1.4rem;font-weight:bold;transition:transform 0.3s;}
-.faq-answer {
-    max-height:0;
-    overflow:hidden;
-    transition:max-height 0.3s ease-out;
-    padding:0 1.2rem;
-}
-.faq-answer p {margin:0;color:#555;line-height:1.6;}
-.faq-answer a {color:#1abc9c;text-decoration:none;font-weight:bold;}
-.faq-answer a:hover {color:#2ecc71;}
-.faq-item.open .faq-answer {max-height:500px;padding:1.2rem;}
-.faq-item.open .faq-toggle {transform:rotate(45deg);}
-
-/* CONTACT */
-.contact {background: linear-gradient(135deg,#1abc9c,#3498db);color:#fff;text-align:center;padding:3rem 1rem;border-bottom-left-radius: 25px;border-bottom-right-radius: 25px;margin-top:3rem;}
-.contact h2 {margin-bottom:0.8rem;}
-.contact p {margin:0.3rem 0;}
-.contact a {color:#fff;font-weight:bold;text-decoration:none;}
-.contact a:hover {color:#2ecc71;}
-.contact .cta {display:inline-block;background:#2ecc71;color:#fff;padding:1rem 1.6rem;border-radius:10px;margin:0.75rem 0.5rem 0 0.5rem;min-width:200px;font-weight:bold;text-decoration:none;transition:0.3s;}
-.contact .cta:hover{background:#27ae60;}
-
-/* FOOTER */
-.footer {background: linear-gradient(135deg,#111,#222,#333);color:#fff;padding:3rem 1rem 1rem;border-top-left-radius:25px;border-top-right-radius:25px;box-shadow:0 -6px 20px rgba(0,0,0,0.25);font-size:0.95rem;}
-.footer-container {max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;align-items:flex-start;padding-bottom:1.5rem;}
-.footer-logo {height:60px;width:auto;margin-bottom:0.5rem;}
-.footer-brand p {margin:0;opacity:0.9;}
-.footer-links, .footer-contact { display: contents; }
-.footer-links a,.footer-contact a{display:inline-block;margin:0 0.4rem;color:#1abc9c;text-decoration:none;transition:0.3s;}
-.footer-links a:hover,.footer-contact a:hover {color:#2ecc71;}
-.footer-social {margin-top:1rem;display:flex;gap:1rem;justify-content:center;align-items:center;flex-wrap:wrap;}
-.footer-social a {display:inline-flex;align-items:center;justify-content:center;text-decoration:none;}
-.footer-social img {transition: transform 0.3s, opacity 0.3s;}
-.footer-social img:hover {transform: scale(1.3);filter: drop-shadow(0 0 6px #1abc9c);}
-.footer-bottom {text-align:center;opacity:0.7;font-size:0.85rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1rem;}
-
-/* FLOATING WHATSAPP BUTTON */
-#whatsapp-btn {
-    position:fixed;bottom:20px;right:20px;background: linear-gradient(135deg,#1abc9c,#16a085);color:#fff;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,0.25);transition: transform 0.3s, box-shadow 0.3s, background 0.3s;z-index:1000;animation: bounce 2s infinite;
-}
-#whatsapp-btn:hover {background: linear-gradient(135deg,#2ecc71,#1abc9c);transform: scale(1.1);box-shadow:0 10px 25px rgba(0,0,0,0.35);}
-@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-
-/* RESPONSIVE */
-@media(max-width:600px){.hero img{height:120px;}.footer-container{flex-direction:column;align-items:center;text-align:center;}}
-</style>
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2SYY041LV"></script>
 <script>
@@ -548,6 +389,8 @@ h2 {font-size:2.2rem;}
 </div>
 </section>
 
+</main>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
 <h2>Contact EasyTech for IT Consultant</h2>
@@ -556,8 +399,6 @@ h2 {font-size:2.2rem;}
 <a class="cta" href="https://wa.me/18194342389">Message on WhatsApp</a>
 <a class="cta cta-secondary" href="contact.html" aria-label="Email EasyTech">Contact Us</a>
 </section>
-
-</main>
 
 <!-- FOOTER -->
 <footer class="footer">
