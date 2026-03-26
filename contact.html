@@ -70,24 +70,43 @@
           e.preventDefault();
           const form = e.target;
           const msgDiv = document.getElementById('form-message');
-          msgDiv.style.display = 'none';
-          msgDiv.textContent = '';
+          
+          // Reset message display
+          if (msgDiv) {
+            msgDiv.style.display = 'none';
+            msgDiv.textContent = '';
+          }
+          
           // Manual validation
           if (!form.name.value.trim()) {
-            msgDiv.textContent = 'Please enter your full name.';
-            msgDiv.style.display = 'block';
+            if (msgDiv) {
+              msgDiv.textContent = 'Please enter your full name.';
+              msgDiv.style.display = 'block';
+            }
             return;
           }
           if (!form.email.value.trim() || !/^\S+@\S+\.\S+$/.test(form.email.value)) {
-            msgDiv.textContent = 'Please enter a valid email address.';
-            msgDiv.style.display = 'block';
+            if (msgDiv) {
+              msgDiv.textContent = 'Please enter a valid email address.';
+              msgDiv.style.display = 'block';
+            }
             return;
           }
           if (!form.message.value.trim()) {
-            msgDiv.textContent = 'Please enter your message.';
-            msgDiv.style.display = 'block';
+            if (msgDiv) {
+              msgDiv.textContent = 'Please enter your message.';
+              msgDiv.style.display = 'block';
+            }
             return;
           }
+          
+          // Show loading state
+          if (msgDiv) {
+            msgDiv.textContent = 'Sending your request...';
+            msgDiv.style.display = 'block';
+            msgDiv.style.color = '#3498db';
+          }
+          
           grecaptcha.enterprise.ready(async () => {
             const token = await grecaptcha.enterprise.execute('6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI', {action: 'contact'});
             const data = {
@@ -108,13 +127,21 @@
               if (response.ok && result.success) {
                 form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
               } else {
-                msgDiv.textContent = result.error || 'There was an error sending your request.';
-                msgDiv.style.display = 'block';
+                const currentMsgDiv = document.getElementById('form-message');
+                if (currentMsgDiv) {
+                  currentMsgDiv.textContent = result.error || 'There was an error sending your request.';
+                  currentMsgDiv.style.display = 'block';
+                  currentMsgDiv.style.color = '#e74c3c';
+                }
               }
             })
-            .catch(() => {
-              msgDiv.textContent = 'There was an error sending your request.';
-              msgDiv.style.display = 'block';
+            .catch((error) => {
+              const currentMsgDiv = document.getElementById('form-message');
+              if (currentMsgDiv) {
+                currentMsgDiv.textContent = 'Network error: ' + (error.message || 'There was an error sending your request.');
+                currentMsgDiv.style.display = 'block';
+                currentMsgDiv.style.color = '#e74c3c';
+              }
             });
           });
         });
