@@ -182,8 +182,7 @@ body {
   }
 
   .scroll-nav-logo span {
-    display: inline;
-    font-size: 0.95rem;
+    display: none;
   }
 
   .scroll-nav-menu {
