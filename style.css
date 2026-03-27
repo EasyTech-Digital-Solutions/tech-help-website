@@ -175,30 +175,33 @@ body {
 /* Mobile responsive navbar */
 @media (max-width: 768px) {
   .scroll-navbar-container {
-    padding: 0.6rem 1rem;
+    padding: 0.4rem 0.8rem;
     gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .scroll-nav-logo span {
     display: none;
   }
+
   .scroll-nav-logo img {
-    height: 75px;
+    height: 45px;
     width: auto;
   }
 
   .scroll-nav-menu {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.6rem;
-    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    width: auto;
   }
 
   .scroll-nav-menu a {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.3rem;
   }
 
   .scroll-nav-cta {
