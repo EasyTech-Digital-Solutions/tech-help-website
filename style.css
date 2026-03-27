@@ -818,7 +818,7 @@ button:hover {
    ============================================ */
 @media (max-width: 600px) {
   .hero img {
-    height: 180px;
+    height: 200px;
   }
 
   .hero h1 {
