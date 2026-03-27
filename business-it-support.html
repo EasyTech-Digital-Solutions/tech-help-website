@@ -39,6 +39,24 @@
 </head>
 <body>
 
+<!-- SCROLL NAVBAR (HIDDEN BY DEFAULT) -->
+<nav id="scrollNav" class="scroll-navbar">
+  <div class="scroll-navbar-container">
+    <a href="index.html" class="scroll-nav-logo">
+      <img src="images/easytech-logo.webp" alt="EasyTech" width="40" height="40">
+      <span>EasyTech</span>
+    </a>
+    <ul class="scroll-nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="business-it-support.html">Business</a></li>
+      <li><a href="senior-tech-support.html">Seniors</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/18194342389" class="scroll-nav-cta">Message</a>
+  </div>
+</nav>
+
 <header class="hero">
   <a href="index.html" aria-label="Go to EasyTech home"><img src="images/easytech-logo.webp" alt="EasyTech Custom IT Support Logo" width="260" height="130" fetchpriority="high"></a>
   <div style="margin-bottom:0.5rem;font-size:1.1rem;font-weight:600;z-index:1;position:relative;">BC Registered Business</div>
@@ -211,6 +229,26 @@ const observer = new IntersectionObserver(entries => {
   });
 },{threshold:0.1});
 serviceCards.forEach(card => observer.observe(card));
+</script>
+
+<!-- SCROLL NAVBAR SCRIPT -->
+<script>
+let lastScrollTop = 0;
+const scrollNav = document.getElementById('scrollNav');
+const heroHeight = document.querySelector('.hero')?.offsetHeight || 400;
+
+window.addEventListener('scroll', function() {
+  const currentScroll = window.scrollY || document.documentElement.scrollTop;
+  
+  // Show navbar after scrolling past the hero section
+  if (currentScroll > heroHeight * 0.3) {
+    scrollNav.classList.add('visible');
+  } else {
+    scrollNav.classList.remove('visible');
+  }
+  
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+}, false);
 </script>
 
 </body>
