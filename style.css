@@ -184,6 +184,10 @@ body {
   .scroll-nav-logo span {
     display: none;
   }
+  .scroll-nav-logo img {
+    height: 50px;
+    width: auto;
+  }
 
   .scroll-nav-menu {
     display: flex;
