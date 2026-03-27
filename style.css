@@ -199,8 +199,7 @@ body {
   }
 
   .scroll-nav-cta {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.8rem;
+    display: none;
   }
 }
 
