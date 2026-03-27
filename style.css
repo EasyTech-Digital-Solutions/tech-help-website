@@ -564,13 +564,15 @@ button:hover {
 
 .footer-links,
 .footer-contact {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .footer-links a,
 .footer-contact a {
   display: inline-block;
-  margin: 0 0.4rem;
+  margin: 0;
   color: #1abc9c;
   text-decoration: none;
   transition: 0.3s;
