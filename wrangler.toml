@@ -1,7 +1,22 @@
 name = "easytech-contact-worker"
 main = "cloudflare/contact-worker.js"
 compatibility_date = "2026-03-20"
+workers_dev = false
+
+[[routes]]
+pattern = "easytechvancouver.ca/api/contact"
+zone_name = "easytechvancouver.ca"
+
+[[routes]]
+pattern = "www.easytechvancouver.ca/api/contact"
+zone_name = "easytechvancouver.ca"
 
 [vars]
-SEND_FROM = "info@easytechvancouver.ca"
-SEND_TO = "admin@easytechvancouver.ca"
+SEND_FROM = "admin@easytechvancouver.ca"
+# Gmail inbox that should receive contact form notifications.
+SEND_TO = "abhijeet.karmaker@gmail.com"
+AUTO_REPLY_ENABLED = "false"
+
+[[send_email]]
+name = "EMAIL"
+destination_address = "abhijeet.karmaker@gmail.com"

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" role="img" aria-labelledby="title">
+  <title id="title">Smart home devices icon</title>
+  <rect width="50" height="50" rx="12" fill="#e8f8f5"/>
+  <path d="M12 24.5 25 14l13 10.5v16a2 2 0 0 1-2 2h-7v-12h-8v12h-7a2 2 0 0 1-2-2z" fill="#1abc9c"/>
+  <path d="M17 21.5V13h6v3.6" fill="none" stroke="#117e6b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 22.5c-1.9-1.7-4.4-2.7-7-2.7s-5.1 1-7 2.7m10.2 4.2a5 5 0 0 0-6.4 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="25" cy="31" r="2.2" fill="#fff"/>
+</svg>
