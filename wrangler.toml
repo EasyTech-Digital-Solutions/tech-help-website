@@ -2,6 +2,7 @@ name = "easytech-contact-worker"
 main = "cloudflare/contact-worker.js"
 compatibility_date = "2026-03-20"
 workers_dev = false
+account_id="78617e32f258e9f198318d505c289753"
 
 [[routes]]
 pattern = "easytechvancouver.ca/api/contact"
