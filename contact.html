@@ -178,7 +178,12 @@
               ? await response.json().catch(() => ({}))
               : {};
             if (response.ok && result.success) {
-              form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
+              const card = form.closest('.card') || form;
+              card.innerHTML = '<div style="padding:2.5rem 1rem;text-align:center;">'
+                + '<div style="width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#1abc9c;color:#fff;font-size:2rem;line-height:64px;">&#10003;</div>'
+                + '<h2 style="color:#1abc9c;margin-bottom:0.5rem;">Thank you for submitting!</h2>'
+                + '<p>Our support team will contact you soon and reply to you by email as soon as possible.</p>'
+                + '</div>';
             } else {
               const currentMsgDiv = document.getElementById('form-message');
               if (currentMsgDiv) {

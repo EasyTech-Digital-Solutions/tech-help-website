@@ -16,7 +16,7 @@ zone_name = "easytechvancouver.ca"
 SEND_FROM = "admin@easytechvancouver.ca"
 # Gmail inbox that should receive contact form notifications.
 SEND_TO = "abhijeet.karmaker@gmail.com"
-AUTO_REPLY_ENABLED = "false"
+AUTO_REPLY_ENABLED = "true"
 
 [[send_email]]
 name = "EMAIL"

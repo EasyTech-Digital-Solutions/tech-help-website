@@ -97,27 +97,62 @@ async function handleRequest(request, env) {
         from: sendFrom,
         fromName: 'EasyTech Vancouver',
         to: email,
-        subject: 'Thanks for contacting EasyTech - request received',
+        subject: "We've received your request - EasyTech Vancouver",
         html: `
-          <p>Hi ${escapeHtml(name)},</p>
-          <p>Thanks for your message. We received your request and will reply soon.</p>
-          <p>Your message:</p>
-          <blockquote>${toHtml(message)}</blockquote>
-          <p>If it is urgent, please WhatsApp <a href="https://wa.me/18194342389">819-434-2389</a>.</p>
-          <p>Best regards,<br>EasyTech Vancouver</p>
+          <div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+            <div style="text-align: center; padding: 24px 0;">
+              <img src="https://easytechvancouver.ca/images/easytech-logo.webp" alt="EasyTech" width="120">
+            </div>
+            <div style="background: linear-gradient(135deg, #1abc9c, #3498db); border-radius: 10px 10px 0 0; padding: 24px; text-align: center;">
+              <h1 style="color: #fff; margin: 0; font-size: 1.4rem;">We've received your request!</h1>
+            </div>
+            <div style="border: 1px solid #dde5ef; border-top: none; border-radius: 0 0 10px 10px; padding: 24px;">
+              <p>Hi ${escapeHtml(name)},</p>
+              <p>Thanks for reaching out to <strong>EasyTech Vancouver</strong>. We've received your request and a member of our support team will get back to you within <strong>24-48 hours</strong>.</p>
+              <p style="margin: 1.5rem 0; padding: 1rem; background: #f4faf9; border-left: 4px solid #1abc9c; border-radius: 6px;">
+                <strong>Your message:</strong><br>${toHtml(message)}
+              </p>
+              <p>If your issue is urgent, you can reach us directly:</p>
+              <p>
+                Phone: <a href="tel:+18194342389" style="color: #1abc9c; text-decoration: none;">819-434-2389</a><br>
+                WhatsApp: <a href="https://wa.me/18194342389" style="color: #1abc9c; text-decoration: none;">Message us on WhatsApp</a>
+              </p>
+              <p>Best regards,<br><strong>The EasyTech Vancouver Team</strong></p>
+            </div>
+            <div style="text-align: center; padding: 24px 12px; color: #5d6f89; font-size: 0.85rem;">
+              <p style="margin: 0 0 8px;"><a href="https://easytechvancouver.ca" style="color: #3498db; text-decoration: none;">easytechvancouver.ca</a></p>
+              <p style="margin: 0 0 8px;">
+                <a href="https://www.facebook.com/profile.php?id=61587106324816" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Facebook</a> |
+                <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Instagram</a> |
+                <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Google</a>
+              </p>
+              <p style="margin: 0;">EasyTech &mdash; Local IT Consultant for Metro Vancouver<br>Coquitlam, Burnaby, Surrey &amp; Vancouver</p>
+            </div>
+          </div>
         `,
         text: [
           `Hi ${name},`,
           '',
-          'Thanks for your message. We received your request and will reply soon.',
+          "Thanks for reaching out to EasyTech Vancouver. We've received your request and a member of our support team will get back to you within 24-48 hours.",
           '',
           'Your message:',
           message,
           '',
-          'If it is urgent, please WhatsApp 819-434-2389.',
+          'If your issue is urgent, you can reach us directly:',
+          'Phone: 819-434-2389',
+          'WhatsApp: https://wa.me/18194342389',
           '',
           'Best regards,',
-          'EasyTech Vancouver',
+          'The EasyTech Vancouver Team',
+          '',
+          '--',
+          'easytechvancouver.ca',
+          'Facebook: https://www.facebook.com/profile.php?id=61587106324816',
+          'Instagram: https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr',
+          'Google: https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu',
+          '',
+          'EasyTech - Local IT Consultant for Metro Vancouver',
+          'Coquitlam, Burnaby, Surrey & Vancouver',
         ].join('\n'),
       });
     }
