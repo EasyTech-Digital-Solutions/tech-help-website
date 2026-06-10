@@ -34,8 +34,8 @@ async function handleRequest(request, env) {
     return jsonResponse({ error: 'Cloudflare email binding not configured' }, 500);
   }
 
-  if (!env?.RECAPTCHA_SECRET_KEY) {
-    return jsonResponse({ error: 'reCAPTCHA secret not configured' }, 500);
+  if (!env?.TURNSTILE_SECRET_KEY) {
+    return jsonResponse({ error: 'Turnstile secret not configured' }, 500);
   }
 
   const body = await request.json().catch(() => null);
@@ -47,19 +47,19 @@ async function handleRequest(request, env) {
     return jsonResponse({ error: 'Spam detected' }, 400);
   }
 
-  const recaptchaToken = body['g-recaptcha-response'];
-  if (!recaptchaToken) {
-    return jsonResponse({ error: 'reCAPTCHA required' }, 400);
+  const turnstileToken = body['cf-turnstile-response'];
+  if (!turnstileToken) {
+    return jsonResponse({ error: 'Turnstile verification required' }, 400);
   }
 
-  const recaptchaVerify = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+  const turnstileVerify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `secret=${encodeURIComponent(env.RECAPTCHA_SECRET_KEY)}&response=${encodeURIComponent(recaptchaToken)}`,
+    body: `secret=${encodeURIComponent(env.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken)}`,
   });
-  const recaptchaResult = await recaptchaVerify.json();
-  if (!recaptchaResult.success) {
-    return jsonResponse({ error: 'reCAPTCHA failed' }, 400);
+  const turnstileResult = await turnstileVerify.json();
+  if (!turnstileResult.success) {
+    return jsonResponse({ error: 'Turnstile verification failed' }, 400);
   }
 
   const name = toDisplayValue(body.name, 'Anonymous');

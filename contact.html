@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Contact Tech Support — EasyTech Vancouver">
   <meta name="twitter:description" content="Contact EasyTech for same-day tech support in Vancouver. Phone, email, or visit us. Expert IT consultant. Call 819-434-2389.">
   <link rel="stylesheet" href="style.css">
-  <script defer src="https://www.google.com/recaptcha/enterprise.js?render=6LdO3xctAAAAADQ5BRpSinihJYPah1BbpGYTGx3I"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
 </head>
 <body>
   <!-- SCROLL NAVBAR (HIDDEN BY DEFAULT) -->
@@ -84,20 +84,44 @@
 
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Describe your issue or question" required></textarea>
+        <div id="turnstile-container" style="margin: 1rem 0;"></div>
         <button type="submit">Send Request</button>
       </form>
       <script>
+        let turnstileToken = '';
+        let turnstileWidgetId = null;
+
+        function initTurnstile() {
+          if (typeof turnstile === 'undefined' || turnstileWidgetId !== null) return;
+          turnstileWidgetId = turnstile.render('#turnstile-container', {
+            sitekey: '0x4AAAAAADiJZamPHvtx8ukB',
+            action: 'contact',
+            callback: function(token) {
+              turnstileToken = token;
+            },
+            'expired-callback': function() {
+              turnstileToken = '';
+            }
+          });
+        }
+
+        if (document.readyState === 'complete') {
+          initTurnstile();
+        } else {
+          window.addEventListener('load', initTurnstile);
+        }
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
           e.preventDefault();
           const form = e.target;
           const msgDiv = document.getElementById('form-message');
-          
+
           // Reset message display
           if (msgDiv) {
             msgDiv.style.display = 'none';
             msgDiv.textContent = '';
           }
-          
+
           // Manual validation
           if (!form.name.value.trim()) {
             if (msgDiv) {
@@ -120,56 +144,66 @@
             }
             return;
           }
-          
+          if (!turnstileToken) {
+            if (msgDiv) {
+              msgDiv.textContent = 'Please complete the verification challenge.';
+              msgDiv.style.display = 'block';
+            }
+            return;
+          }
+
           // Show loading state
           if (msgDiv) {
             msgDiv.textContent = 'Sending your request...';
             msgDiv.style.display = 'block';
             msgDiv.style.color = '#3498db';
           }
-          
-          grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LdO3xctAAAAADQ5BRpSinihJYPah1BbpGYTGx3I', {action: 'contact'});
-            const data = {
-              name: form.name.value,
-              email: form.email.value,
-              phone: form.phone.value,
-              message: form.message.value,
-              website: form.website.value,
-              'g-recaptcha-response': token
-            };
-            fetch('/api/contact', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-            })
-            .then(async response => {
-              const contentType = response.headers.get('content-type') || '';
-              const result = contentType.includes('application/json')
-                ? await response.json().catch(() => ({}))
-                : {};
-              if (response.ok && result.success) {
-                form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
-              } else {
-                const currentMsgDiv = document.getElementById('form-message');
-                if (currentMsgDiv) {
-                  const cloudflareBlocked = response.status === 403 && !contentType.includes('application/json');
-                  currentMsgDiv.textContent = cloudflareBlocked
-                    ? 'Cloudflare blocked the contact form request. Please try WhatsApp or call 819-434-2389 while we finish the email setup.'
-                    : result.details || result.error || `There was an error sending your request. Status: ${response.status}`;
-                  currentMsgDiv.style.display = 'block';
-                  currentMsgDiv.style.color = '#e74c3c';
-                }
-              }
-            })
-            .catch((error) => {
+
+          const data = {
+            name: form.name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            message: form.message.value,
+            website: form.website.value,
+            'cf-turnstile-response': turnstileToken
+          };
+          fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          .then(async response => {
+            const contentType = response.headers.get('content-type') || '';
+            const result = contentType.includes('application/json')
+              ? await response.json().catch(() => ({}))
+              : {};
+            if (response.ok && result.success) {
+              form.outerHTML = '<div style="padding:2rem 1rem;text-align:center;"><h2 style="color:#1abc9c;">Thank you for submitting!</h2><p>Our support team will contact you soon.</p></div>';
+            } else {
               const currentMsgDiv = document.getElementById('form-message');
               if (currentMsgDiv) {
-                currentMsgDiv.textContent = 'Network error: ' + (error.message || 'There was an error sending your request.');
+                const cloudflareBlocked = response.status === 403 && !contentType.includes('application/json');
+                currentMsgDiv.textContent = cloudflareBlocked
+                  ? 'Cloudflare blocked the contact form request. Please try WhatsApp or call 819-434-2389 while we finish the email setup.'
+                  : result.details || result.error || `There was an error sending your request. Status: ${response.status}`;
                 currentMsgDiv.style.display = 'block';
                 currentMsgDiv.style.color = '#e74c3c';
               }
-            });
+            }
+          })
+          .catch((error) => {
+            const currentMsgDiv = document.getElementById('form-message');
+            if (currentMsgDiv) {
+              currentMsgDiv.textContent = 'Network error: ' + (error.message || 'There was an error sending your request.');
+              currentMsgDiv.style.display = 'block';
+              currentMsgDiv.style.color = '#e74c3c';
+            }
+          })
+          .finally(() => {
+            turnstileToken = '';
+            if (turnstileWidgetId !== null && typeof turnstile !== 'undefined') {
+              turnstile.reset(turnstileWidgetId);
+            }
           });
         });
       </script>
