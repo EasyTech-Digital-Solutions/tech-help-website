@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Contact Tech Support — EasyTech Vancouver">
   <meta name="twitter:description" content="Contact EasyTech for same-day tech support in Vancouver. Phone, email, or visit us. Expert IT consultant. Call 819-434-2389.">
   <link rel="stylesheet" href="style.css">
-  <script defer src="https://www.google.com/recaptcha/enterprise.js?render=6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI"></script>
+  <script defer src="https://www.google.com/recaptcha/enterprise.js?render=6LdO3xctAAAAADQ5BRpSinihJYPah1BbpGYTGx3I"></script>
 </head>
 <body>
   <!-- SCROLL NAVBAR (HIDDEN BY DEFAULT) -->
@@ -129,7 +129,7 @@
           }
           
           grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LdMYpUsAAAAAA_JyQskclG8FFTGDZdZrhcu23MI', {action: 'contact'});
+            const token = await grecaptcha.enterprise.execute('6LdO3xctAAAAADQ5BRpSinihJYPah1BbpGYTGx3I', {action: 'contact'});
             const data = {
               name: form.name.value,
               email: form.email.value,
