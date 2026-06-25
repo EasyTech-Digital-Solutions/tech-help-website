@@ -170,31 +170,60 @@
   <!-- MAIN CONTENT -->
   <main>
 
+  <!-- HOW WE WORK WITH SENIORS -->
+  <section id="approach">
+    <h2>How We Work With Seniors</h2>
+    <div class="intro-card">
+      <p>EasyTech's approach to senior tech support is different from a typical computer repair shop. We come to you — there's no need to bring a device anywhere or wait in a queue. We sit down together at your kitchen table or living room and work through the problem side by side, explaining each step in plain English without any technical jargon.</p>
+      <p>We understand that technology changes quickly and that instructions which seem obvious to younger users are not always intuitive the first time around. Our technicians are trained to be patient and to repeat or rephrase anything until it makes sense. We encourage questions, and we don't make you feel rushed. After each visit, we can leave you with a simple written cheat sheet — in large print if helpful — so you have something to refer back to when we're gone.</p>
+      <p>Privacy and respect are important to us. We never handle your accounts or passwords without your permission, and we explain exactly what we're doing before we do it. Many of our senior clients in Coquitlam, Burnaby, Surrey, and Vancouver have been with EasyTech for multiple visits because they know they're getting honest, trustworthy help from someone who genuinely cares about their experience with technology.</p>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section id="services">
   <h2>Senior Services</h2>
-  <div class="services" role="region" aria-label="Senior IT consultant services">
-      <article class="service">
-          <img src="images/phone-icon.png" alt="Phone help icon" width="50" height="50" loading="lazy">
-          <h3>Phone & Tablet Help</h3>
-          <p>WhatsApp, FaceTime, photo backup, contacts and easy step-by-step guidance.</p>
-      </article>
-      <article class="service">
-          <img src="images/computer-icon.png" alt="Computer support icon" width="50" height="50" loading="lazy">
-          <h3>Computer & Laptop Support</h3>
-          <p>Email setup, updates, performance help and safe browsing tips.</p>
-      </article>
-      <article class="service">
-          <img src="images/smarthome-icon.svg" alt="Smart home icon" width="50" height="50" loading="lazy">
-          <h3>Smart TV & Home Tech</h3>
-          <p>TV setup, streaming apps, remote control help and simple device organization.</p>
-      </article>
-      <article class="service">
-          <img src="images/senior-icon.png" alt="Senior support icon" width="50" height="50" loading="lazy">
-          <h3>Online Safety & Scam Protection</h3>
-          <p>Practical tips to recognize scams and keep accounts secure without confusion.</p>
-      </article>
+
+  <div class="service-row">
+    <div class="service-row-inner">
+      <div class="service-icon-box"><img src="images/phone-icon.png" alt="Phone help icon" width="34" height="34" loading="lazy"></div>
+      <div class="service-text">
+        <h3>Phone & Tablet Help</h3>
+        <p>Smartphones and tablets are incredibly useful for staying connected with family, but they can be confusing when you're just starting out or when an update changes where everything is. EasyTech helps with the full range of phone and tablet tasks: setting up WhatsApp and FaceTime so you can video call grandchildren, organizing your contacts and photo albums, backing up your photos to the cloud so they're never lost, and adjusting settings like font size, display brightness, and notification sounds to suit your preferences. We work with both iPhone and Android devices and take as much time as needed.</p>
+      </div>
+    </div>
   </div>
+
+  <div class="service-row">
+    <div class="service-row-inner">
+      <div class="service-icon-box"><img src="images/computer-icon.png" alt="Computer support icon" width="34" height="34" loading="lazy"></div>
+      <div class="service-text">
+        <h3>Computer & Laptop Support</h3>
+        <p>Computers slow down over time, and older operating systems often stop receiving security updates, which puts your personal information at risk. EasyTech helps seniors with email account setup and recovery, Windows and macOS updates, performance cleanup to speed up sluggish computers, and printer connections. We also show you safe browsing habits — how to identify suspicious websites, how to avoid downloading unwanted software, and how to recognize when a pop-up warning is a scam rather than a real problem.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-row-inner">
+      <div class="service-icon-box"><img src="images/smarthome-icon.svg" alt="Smart home icon" width="34" height="34" loading="lazy"></div>
+      <div class="service-text">
+        <h3>Smart TV & Home Tech</h3>
+        <p>Modern Smart TVs offer access to Netflix, YouTube, CBC Gem, and dozens of other streaming services, but navigating the menus and getting everything connected can be frustrating without guidance. EasyTech sets up your Smart TV, installs and organizes the streaming apps you want to use, connects your soundbar or speaker system, and programs your remote so you only need one device to control everything. We also add streaming sticks like Apple TV or Roku to older sets.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-row-inner">
+      <div class="service-icon-box"><img src="images/senior-icon.png" alt="Senior support icon" width="34" height="34" loading="lazy"></div>
+      <div class="service-text">
+        <h3>Online Safety & Scam Protection</h3>
+        <p>Seniors are disproportionately targeted by online scams, phone fraud, and fake tech support calls. EasyTech's online safety sessions teach you exactly what real banks, government agencies, and tech companies will and won't ever ask you to do — so you can recognize a scam immediately. We set up strong passwords, a simple password manager, two-factor authentication, and reputable security software to keep your accounts protected.</p>
+      </div>
+    </div>
+  </div>
+
   </section>
 
   <section id="pricing">
@@ -329,15 +358,14 @@
   <!-- FLOATING WHATSAPP BUTTON -->
   <a id="whatsapp-btn" href="https://wa.me/18194342389" target="_blank" rel="noopener" aria-label="Message EasyTech on WhatsApp">💬</a>
 
-  <!-- SERVICE CARD ANIMATION SCRIPT -->
+  <!-- SERVICE ROW ANIMATION -->
   <script>
-  const services = document.querySelectorAll('.service');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting){entry.target.classList.add('visible');}
     });
-  },{threshold:0.1});
-  services.forEach(service => observer.observe(service));
+  },{threshold:0.08});
+  document.querySelectorAll('.service-row').forEach(el => observer.observe(el));
   </script>
 
   <!-- FAQ ACCORDION SCRIPT -->
