@@ -204,26 +204,32 @@ img {
   }
 
   .logo-crop {
-    width: 74px;
+    width: 130px;
     height: 28px;
   }
 
   .logo-crop img {
     height: 136px;
-    margin-top: -49px;
+    margin-top: -43px;
+    margin-left: -35px;
   }
 
   .scroll-nav-menu {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
-    gap: 0.5rem;
+    gap: 0.3rem;
     width: auto;
   }
 
   .scroll-nav-menu a {
     font-size: 0.72rem;
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.15rem;
+    white-space: nowrap;
+  }
+
+  .nav-hide-mobile {
+    display: none;
   }
 
   .scroll-nav-cta {
