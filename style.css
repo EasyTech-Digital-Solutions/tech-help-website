@@ -117,18 +117,18 @@ img {
 }
 
 .logo-crop {
-  width: 160px;
-  height: 44px;
+  width: 250px;
+  height: 38px;
   overflow: hidden;
   flex-shrink: 0;
 }
 
 .logo-crop img {
-  height: 120px;
+  height: 188px;
   width: auto;
   max-width: none;
-  margin-top: -22px;
-  margin-left: -4px;
+  margin-top: -67px;
+  margin-left: 0;
 }
 
 .scroll-nav-menu {
@@ -204,13 +204,13 @@ img {
   }
 
   .logo-crop {
-    width: 135px;
-    height: 36px;
+    width: 74px;
+    height: 28px;
   }
 
   .logo-crop img {
-    height: 98px;
-    margin-top: -18px;
+    height: 136px;
+    margin-top: -49px;
   }
 
   .scroll-nav-menu {
