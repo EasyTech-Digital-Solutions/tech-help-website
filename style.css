@@ -618,6 +618,33 @@ h3 {
   line-height: 1.75;
   font-size: 0.93rem;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tip-card.expanded .tip-text p {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.tip-read-more {
+  display: block;
+  margin: 0.7rem 0 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0f6b5a;
+  font-size: 0.87rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tip-read-more:hover,
+.tip-read-more:focus-visible {
+  text-decoration: underline;
 }
 
 .tip-text .cta {
