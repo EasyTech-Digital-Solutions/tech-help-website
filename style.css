@@ -117,15 +117,18 @@ img {
 }
 
 .logo-crop {
+  width: 250px;
   height: 38px;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
 .logo-crop img {
-  height: 100%;
+  height: 188px;
   width: auto;
+  max-width: none;
+  margin-top: -67px;
+  margin-left: 0;
 }
 
 .scroll-nav-menu {
@@ -201,7 +204,14 @@ img {
   }
 
   .logo-crop {
+    width: 130px;
     height: 28px;
+  }
+
+  .logo-crop img {
+    height: 136px;
+    margin-top: -43px;
+    margin-left: -35px;
   }
 
   .scroll-nav-menu {
@@ -269,6 +279,7 @@ img {
 .hero img {
   width: min(300px, 78vw);
   height: auto;
+  aspect-ratio: 3 / 2;
   margin-bottom: 1rem;
   z-index: 1;
   position: relative;
@@ -1035,7 +1046,7 @@ button:hover {
 }
 
 .footer-logo {
-  height: 50px;
+  height: 60px;
   width: auto;
   margin-bottom: 0.5rem;
 }
