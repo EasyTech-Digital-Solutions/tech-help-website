@@ -1,5 +1,3 @@
-import { EmailMessage } from 'cloudflare:email';
-
 const JSON_HEADERS = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Origin': '*',
@@ -30,8 +28,8 @@ async function handleRequest(request, env) {
     return jsonResponse({ error: 'Method Not Allowed' }, 405);
   }
 
-  if (!env?.EMAIL || typeof env.EMAIL.send !== 'function') {
-    return jsonResponse({ error: 'Cloudflare email binding not configured' }, 500);
+  if (!env?.GRAPH_TENANT_ID || !env?.GRAPH_CLIENT_ID || !env?.GRAPH_CLIENT_SECRET) {
+    return jsonResponse({ error: 'Microsoft Graph credentials not configured' }, 500);
   }
 
   if (!env?.TURNSTILE_SECRET_KEY) {
@@ -68,9 +66,10 @@ async function handleRequest(request, env) {
   const message = toDisplayValue(body.message);
 
   try {
-    await sendEmail(env.EMAIL, {
+    const graphToken = await getGraphToken(env);
+
+    await sendGraphEmail(env, graphToken, {
       from: sendFrom,
-      fromName: 'EasyTech Website',
       to: sendTo,
       replyTo: email,
       replyToName: name,
@@ -82,20 +81,11 @@ async function handleRequest(request, env) {
         <p><strong>Message:</strong></p>
         <p>${toHtml(message)}</p>
       `,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        '',
-        'Message:',
-        message,
-      ].join('\n'),
     });
 
     if (autoReplyEnabled) {
-      await sendEmail(env.EMAIL, {
+      await sendGraphEmail(env, graphToken, {
         from: sendFrom,
-        fromName: 'EasyTech Vancouver',
         to: email,
         subject: "We've received your request - EasyTech Vancouver",
         html: `
@@ -130,30 +120,6 @@ async function handleRequest(request, env) {
             </div>
           </div>
         `,
-        text: [
-          `Hi ${name},`,
-          '',
-          "Thanks for reaching out to EasyTech Vancouver. We've received your request and a member of our support team will get back to you within 24-48 hours.",
-          '',
-          'Your message:',
-          message,
-          '',
-          'If your issue is urgent, you can reach us directly:',
-          'Phone: 819-434-2389',
-          'WhatsApp: https://wa.me/18194342389',
-          '',
-          'Best regards,',
-          'The EasyTech Vancouver Team',
-          '',
-          '--',
-          'easytechvancouver.ca',
-          'Facebook: https://www.facebook.com/profile.php?id=61587106324816',
-          'Instagram: https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr',
-          'Google: https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu',
-          '',
-          'EasyTech - Local IT Consultant for Metro Vancouver',
-          'Coquitlam, Burnaby, Surrey & Vancouver',
-        ].join('\n'),
       });
     }
 
@@ -167,64 +133,50 @@ async function handleRequest(request, env) {
   }
 }
 
-async function sendEmail(binding, email) {
-  const raw = buildMimeMessage(email);
-  const message = new EmailMessage(email.from, email.to, raw);
-  return binding.send(message);
-}
+async function getGraphToken(env) {
+  const response = await fetch(`https://login.microsoftonline.com/${env.GRAPH_TENANT_ID}/oauth2/v2.0/token`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: env.GRAPH_CLIENT_ID,
+      client_secret: env.GRAPH_CLIENT_SECRET,
+      scope: 'https://graph.microsoft.com/.default',
+      grant_type: 'client_credentials',
+    }),
+  });
 
-function buildMimeMessage(email) {
-  const boundary = `easytech-${crypto.randomUUID()}`;
-  const headers = [
-    `From: ${formatAddress(email.from, email.fromName)}`,
-    `To: ${formatAddress(email.to)}`,
-    email.replyTo ? `Reply-To: ${formatAddress(email.replyTo, email.replyToName)}` : null,
-    `Subject: ${encodeHeader(email.subject)}`,
-    'MIME-Version: 1.0',
-    `Content-Type: multipart/alternative; boundary="${boundary}"`,
-  ].filter(Boolean);
-
-  return [
-    ...headers,
-    '',
-    `--${boundary}`,
-    'Content-Type: text/plain; charset="UTF-8"',
-    'Content-Transfer-Encoding: 8bit',
-    '',
-    email.text,
-    '',
-    `--${boundary}`,
-    'Content-Type: text/html; charset="UTF-8"',
-    'Content-Transfer-Encoding: 8bit',
-    '',
-    email.html,
-    '',
-    `--${boundary}--`,
-  ].join('\r\n');
-}
-
-function formatAddress(address, name = '') {
-  const cleanAddress = sanitizeHeader(address);
-  const cleanName = sanitizeHeader(name);
-
-  if (!cleanName) {
-    return `<${cleanAddress}>`;
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(`Graph token request failed: ${data.error_description || data.error || response.status}`);
   }
 
-  return `"${cleanName.replace(/"/g, '\\"')}" <${cleanAddress}>`;
+  return data.access_token;
 }
 
-function encodeHeader(value) {
-  const cleanValue = sanitizeHeader(value);
-  if (/^[\x00-\x7F]*$/.test(cleanValue)) {
-    return cleanValue;
+async function sendGraphEmail(env, token, { from, to, replyTo, replyToName, subject, html }) {
+  const message = {
+    subject,
+    body: { contentType: 'HTML', content: html },
+    toRecipients: [{ emailAddress: { address: to } }],
+  };
+
+  if (replyTo) {
+    message.replyTo = [{ emailAddress: { address: replyTo, name: replyToName || undefined } }];
   }
 
-  return `=?UTF-8?B?${btoa(unescape(encodeURIComponent(cleanValue)))}?=`;
-}
+  const response = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(from)}/sendMail`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ message, saveToSentItems: false }),
+  });
 
-function sanitizeHeader(value) {
-  return String(value || '').replace(/[\r\n]/g, ' ').trim();
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => '');
+    throw new Error(`Graph sendMail failed: ${response.status} ${errorText}`);
+  }
 }
 
 function jsonResponse(payload, status) {
