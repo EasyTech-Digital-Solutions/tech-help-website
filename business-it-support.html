@@ -31,21 +31,68 @@
   <meta name="twitter:description" content="Affordable business IT support for small companies in Metro Vancouver. Networking, security, Microsoft 365 & computer support. Call 819-434-2389.">
   
   <link rel="stylesheet" href="style.css">
+
+<!-- Business IT Support Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "EasyTech",
+      "image": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
+      "@id": "https://easytechvancouver.ca/",
+      "url": "https://easytechvancouver.ca/",
+      "telephone": "+18194342389",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Coquitlam",
+        "addressRegion": "BC",
+        "addressCountry": "CA"
+      },
+      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver"],
+      "openingHours": ["Mo-Fr 17:30-22:00", "Sa-Su 10:00-22:00"],
+      "description": "Affordable business IT support for small companies in Metro Vancouver: network setup and security, computer support, Microsoft 365 and cloud solutions, email configuration, backups, employee training, and IT consulting.",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61587106324816",
+        "https://www.instagram.com/easytechvancouver"
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Business IT Support",
+      "serviceType": "Small business IT support and consulting",
+      "provider": { "@type": "LocalBusiness", "name": "EasyTech" },
+      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver"],
+      "description": "Business IT support for small companies including network security setup, computer and device support, Microsoft 365 and cloud solutions, email configuration, backup services, employee tech training, printer setup, and IT consulting."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://easytechvancouver.ca/"},
+        {"@type":"ListItem","position":2,"name":"Business IT Support","item":"https://easytechvancouver.ca/business-it-support"}
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 
 <!-- SCROLL NAVBAR (HIDDEN BY DEFAULT) -->
 <nav id="scrollNav" class="scroll-navbar">
   <div class="scroll-navbar-container">
-    <a href="index.html" class="scroll-nav-logo">
+    <a href="/" class="scroll-nav-logo">
       <div class="logo-crop"><img src="images/easytech-logo-white-text.webp" alt="EasyTech" width="474" height="171"></div>
     </a>
     <ul class="scroll-nav-menu">
-      <li class="nav-hide-mobile"><a href="index.html">Home</a></li>
-      <li><a href="index.html#services">Services</a></li>
-      <li><a href="business-it-support.html">Business</a></li>
-      <li><a href="senior-tech-support.html">Seniors</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li class="nav-hide-mobile"><a href="/">Home</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/business-it-support">Business</a></li>
+      <li><a href="/senior-tech-support">Seniors</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
     <a href="https://wa.me/18194342389" class="scroll-nav-cta">Message EasyTech</a>
   </div>
@@ -53,18 +100,18 @@
 
 <header class="hero">
   <span class="hero-nav-trigger" aria-hidden="true"></span>
-  <a href="index.html" aria-label="Go to EasyTech home"><img src="images/easytech-logo-white-text.webp" alt="EasyTech Custom IT Support Logo" width="474" height="171" fetchpriority="high" decoding="async"></a>
+  <a href="/" aria-label="Go to EasyTech home"><img src="images/easytech-logo-white-text.webp" alt="EasyTech Custom IT Support Logo" width="474" height="171" fetchpriority="high" decoding="async"></a>
   <div style="margin-bottom:0.5rem;font-size:1.1rem;font-weight:600;z-index:1;position:relative;">BC Registered Business</div>
   <h1>Business IT Support for Vancouver Small Companies</h1>
   <p>Professional IT services for small businesses across Metro Vancouver</p>
   <p>Same-day support • Affordable rates • Local expertise</p>
   <div class="cta-group">
     <a href="tel:+18194342389" class="cta">📞 Call: 819-434-2389</a>
-    <a href="contact.html" class="cta-secondary">📧 Get Free Consultation</a>
+    <a href="/contact" class="cta-secondary">📧 Get Free Consultation</a>
   </div>
   <div style="position:relative;top:12px;left:0;width:100%;max-width:1100px;margin-top:12px;z-index:2;">
     <nav aria-label="Breadcrumb" style="text-align:left;">
-      <a href="index.html" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;cursor:pointer;">Home</a>
+      <a href="/" style="color:rgba(255,255,255,0.95);text-decoration:underline;font-weight:600;cursor:pointer;">Home</a>
       <span style="color:rgba(255,255,255,0.85);margin:0 8px;">›</span>
       <span style="color:rgba(255,255,255,0.95);">Business IT Support</span>
     </nav>
@@ -227,7 +274,7 @@
   </section>
 
   <section aria-label="Pricing information" role="region">
-    <h3 style="text-align: center;">Business IT Support Pricing</h3>
+    <h2 style="text-align: center;">Business IT Support Pricing</h2>
     <div class="highlight-box">
       <strong>Free Consultation:</strong> Get in touch for a free IT assessment and custom quote for your business needs.
     </div>
@@ -240,7 +287,7 @@
   <p>Don't let tech issues slow down your business. Contact EasyTech today.</p>
   <div class="cta-group">
     <a href="tel:+18194342389" class="cta">📞 Call: 819-434-2389</a>
-    <a href="contact.html" class="cta-secondary">📧 Email Request</a>
+    <a href="/contact" class="cta-secondary">📧 Email Request</a>
   </div>
   <p style="margin-top: 1rem;">Mon–Fri: 5:30 PM – 10 PM &nbsp;|&nbsp; Sat–Sun: 10 AM – 10 PM</p>
 </section>
@@ -252,10 +299,10 @@
       <p>EasyTech - Local IT Support for Metro Vancouver</p>
     </div>
     <nav class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="business-it-support.html">Business IT Support</a>
-      <a href="senior-tech-support.html">Senior Support</a>
-      <a href="contact.html">Contact</a>
+      <a href="/">Home</a>
+      <a href="/business-it-support">Business IT Support</a>
+      <a href="/senior-tech-support">Senior Support</a>
+      <a href="/contact">Contact</a>
     </nav>
     <div class="footer-contact">
       <a href="tel:+18194342389">Call EasyTech: 819-434-2389</a>
@@ -282,53 +329,8 @@
 <!-- FLOATING WHATSAPP BUTTON -->
 <a id="whatsapp-btn" href="https://wa.me/18194342389" target="_blank" rel="noopener" aria-label="Message EasyTech on WhatsApp">💬</a>
 
-<!-- SERVICE ROW ANIMATION -->
-<script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){entry.target.classList.add('visible');}
-  });
-},{threshold:0.08});
-document.querySelectorAll('.service-row').forEach(el => observer.observe(el));
-</script>
-
-<!-- SCROLL NAVBAR SCRIPT -->
-<script>
-const scrollNav = document.getElementById('scrollNav');
-const heroNavTrigger = document.querySelector('.hero-nav-trigger');
-
-if (scrollNav && heroNavTrigger && 'IntersectionObserver' in window) {
-  const navObserver = new IntersectionObserver(([entry]) => {
-    scrollNav.classList.toggle('visible', !entry.isIntersecting);
-  });
-  navObserver.observe(heroNavTrigger);
-}
-</script>
-
-<!-- Deferred analytics: keeps third-party JavaScript off the first render path. -->
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-
-function loadAnalytics() {
-  if (window.easyTechAnalyticsLoaded) return;
-  window.easyTechAnalyticsLoaded = true;
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-T2SYY041LV';
-  document.head.appendChild(script);
-  gtag('js', new Date());
-  gtag('config', 'G-T2SYY041LV');
-}
-
-window.addEventListener('load', () => {
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(loadAnalytics, { timeout: 3000 });
-  } else {
-    setTimeout(loadAnalytics, 1500);
-  }
-});
-</script>
+<!-- SHARED SITE SCRIPT (scroll nav, card animations, analytics) -->
+<script src="js/main.js" defer></script>
 
 </body>
 </html>
