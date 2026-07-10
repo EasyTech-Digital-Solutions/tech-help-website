@@ -15,15 +15,6 @@ const observer = new IntersectionObserver(entries => {
 },{threshold:0.08});
 document.querySelectorAll('.service-row, .tip-card').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.tip-read-more').forEach(btn => {
-  btn.addEventListener('click', function(){
-    const card = this.closest('.tip-card');
-    const expanded = card.classList.toggle('expanded');
-    this.textContent = expanded ? 'Read less' : 'Read more';
-    this.setAttribute('aria-expanded', expanded);
-  });
-});
-
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
