@@ -7,8 +7,8 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6309879983967574" crossorigin="anonymous"></script>
   <link rel="preload" as="image" href="images/easytech-logo-white-text.webp" type="image/webp" fetchpriority="high">
   <title>Business IT Support Vancouver | Small Business IT Services | EasyTech</title>
-  <meta name="description" content="Business IT support for small companies in Vancouver, Burnaby, Coquitlam & Surrey. Affordable IT services for networking, security, Microsoft 365 & computer support. Call 819-434-2389.">
-  <meta name="keywords" content="business IT support Vancouver, small business IT support Vancouver, IT services Vancouver, business IT services, computer support, IT support Vancouver, managed IT services">
+  <meta name="description" content="Business IT support in Vancouver, Burnaby & Surrey: M365 & email migration, custom domain setup, network security, computer support. Call 819-434-2389.">
+  <meta name="keywords" content="business IT support Vancouver, small business IT support Vancouver, IT services Vancouver, business IT services, computer support, IT support Vancouver, managed IT services, M365 migration Vancouver, business email migration, custom domain email setup">
   <meta name="author" content="EasyTech">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   
@@ -72,6 +72,31 @@
       "itemListElement": [
         {"@type":"ListItem","position":1,"name":"Home","item":"https://easytechvancouver.ca/"},
         {"@type":"ListItem","position":2,"name":"Business IT Support","item":"https://easytechvancouver.ca/business-it-support"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type":"Question",
+          "name":"Can you migrate our business email to Microsoft 365?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes — EasyTech handles full email migration to Microsoft 365, transferring existing mail, contacts, and calendars from Gmail or a local server to your business domain with minimal downtime."}
+        },
+        {
+          "@type":"Question",
+          "name":"Do you set up custom domain email for small businesses?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes — we configure custom domain email (yourname@yourbusiness.com) through Microsoft 365 or other hosted providers, including DNS records like MX, SPF, DKIM, and DMARC for deliverability and security."}
+        },
+        {
+          "@type":"Question",
+          "name":"Can I bundle M365 migration with email and domain setup?",
+          "acceptedAnswer": {"@type":"Answer","text":"Yes — bundling M365 migration, email migration, and custom domain setup together qualifies for a discounted flat rate compared to booking each service separately."}
+        },
+        {
+          "@type":"Question",
+          "name":"How long does an M365 migration take for a small business?",
+          "acceptedAnswer": {"@type":"Answer","text":"Most small business M365 migrations are completed within a single day with minimal downtime, depending on mailbox size and number of users."}
+        }
       ]
     }
   ]
@@ -157,7 +182,7 @@
       <div class="service-icon-box"><img src="images/web-development-icon.png" alt="Cloud solutions icon" width="34" height="34" loading="lazy"></div>
       <div class="service-text">
         <h3>Microsoft 365 & Cloud Solutions</h3>
-        <p>EasyTech handles the full M365 migration and configuration — Exchange Online email with your business domain, Teams for communication and video meetings, SharePoint and OneDrive for shared file storage, and security policies through the Admin Center. We manage user onboarding and offboarding, and handle data migration from Gmail or a local server with minimal downtime.</p>
+        <p>EasyTech handles the full M365 migration and configuration — Exchange Online email with your business domain, Teams for communication and video meetings, SharePoint and OneDrive for shared file storage, and security policies through the Admin Center. We manage user onboarding and offboarding, and handle data migration from Gmail or a local server with minimal downtime. Bundle M365 with email migration and custom domain setup for a discounted flat rate.</p>
       </div>
     </div>
   </div>
@@ -280,6 +305,52 @@
     </div>
   </section>
 
+  <!-- FAQ SECTION -->
+  <section id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        <span>Can you migrate our business email to Microsoft 365?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes — EasyTech handles full email migration to Microsoft 365, transferring existing mail, contacts, and calendars from Gmail or a local server to your business domain with minimal downtime.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        <span>Do you set up custom domain email for small businesses?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes — we configure custom domain email (yourname@yourbusiness.com) through Microsoft 365 or other hosted providers, including DNS records like MX, SPF, DKIM, and DMARC for deliverability and security.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        <span>Can I bundle M365 migration with email and domain setup?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Yes — bundling M365 migration, email migration, and custom domain setup together qualifies for a discounted flat rate compared to booking each service separately.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false">
+        <span>How long does an M365 migration take for a small business?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Most small business M365 migrations are completed within a single day with minimal downtime, depending on mailbox size and number of users.</p>
+      </div>
+    </div>
+  </div>
+  </section>
+
 </main>
 
 <section class="contact" aria-label="Contact information" role="region">
@@ -331,6 +402,18 @@
 
 <!-- SHARED SITE SCRIPT (scroll nav, card animations, analytics) -->
 <script src="js/main.js" defer></script>
+
+<!-- FAQ ACCORDION SCRIPT -->
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(question => {
+  question.addEventListener('click', function(){
+    const faqItem = this.parentElement;
+    faqItem.classList.toggle('open');
+    this.setAttribute('aria-expanded', faqItem.classList.contains('open'));
+  });
+});
+</script>
 
 </body>
 </html>
