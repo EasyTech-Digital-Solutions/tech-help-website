@@ -1,0 +1,17 @@
+# EasyTech
+
+> EasyTech provides friendly, local tech support in Coquitlam, Burnaby, Surrey, and Vancouver, BC. Services include Wi-Fi & network setup, phone/tablet setup, smart home devices, home office setup, senior-friendly tech guidance, small business IT assistance, device optimization & security, and website development. Flat rates range from $40–$120 per service, with 20% off the first visit.
+
+## Pages
+
+- [Home](https://easytechvancouver.ca/): Overview of services, pricing, and contact information for EasyTech.
+- [Services](https://easytechvancouver.ca/#services): Wi-Fi & network support, phone/tablet setup, smart home devices, home office setup, senior-friendly support, small business IT assistance, device optimization & security, and website development.
+- [Pricing](https://easytechvancouver.ca/#pricing): Flat-rate pricing from $40–$120 per service, with bundle discounts and 20% off first visits.
+- [Tech Tips & Local Guides](https://easytechvancouver.ca/#blog): Local guides on smart TV & sound setup, Wi-Fi troubleshooting, and smart home device setup in Metro Vancouver.
+- [Contact](https://easytechvancouver.ca/#contact): Call or WhatsApp 819-434-2389 to book a service.
+
+## Contact
+
+- Phone/WhatsApp: [819-434-2389](https://wa.me/18194342389)
+- Facebook: [EasyTech Metro Vancouver](https://www.facebook.com/profile.php?id=61587106324816)
+- Instagram: [@easytechvancouver](https://www.instagram.com/easytechvancouver)
