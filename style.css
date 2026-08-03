@@ -703,6 +703,40 @@ h3 {
 }
 
 /* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonial-stars {
+  color: #f5b301;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin-bottom: 0.6rem;
+}
+
+.testimonial-quote {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0 0 0.8rem 0;
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: #117e6b;
+  margin: 0;
+}
+
+.testimonial-author a {
+  color: #1abc9c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.testimonial-author a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
    PROCESS LIST
    ============================================ */
 .process-list {
