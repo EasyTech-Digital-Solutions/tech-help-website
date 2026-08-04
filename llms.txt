@@ -8,6 +8,8 @@
 - [Business IT Support](https://easytechvancouver.ca/business-it-support): IT services for small businesses in Metro Vancouver, including network security, Microsoft 365 & email migration, cloud backups, employee tech training, and IT consulting.
 - [Senior Tech Support](https://easytechvancouver.ca/senior-tech-support): Patient, jargon-free in-home tech support for seniors, covering phones/tablets, computers, Smart TVs, and online safety/scam protection.
 - [Contact](https://easytechvancouver.ca/contact): Request a free quote or book a service by phone, WhatsApp, or contact form.
+- [Privacy Policy](https://easytechvancouver.ca/privacy-policy): What information EasyTech collects, how it's used, and your choices.
+- [Terms of Service](https://easytechvancouver.ca/terms-of-service): The rules and conditions for using the site and EasyTech's services.
 
 ## Contact
 
