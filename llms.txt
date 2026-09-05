@@ -1,11 +1,11 @@
 # EasyTech
 
-> EasyTech provides friendly, local IT support and computer help across Metro Vancouver (Coquitlam, Burnaby, Surrey & Vancouver). Services include Wi-Fi & network support, phone/tablet setup, smart home device installation, home office setup, senior-friendly in-home tech support, small business IT assistance, computer support & device security, and website design & development.
+> EasyTech provides friendly, local IT support and computer help across Metro Vancouver (Coquitlam, Burnaby, Surrey & Vancouver). Services include Wi-Fi & network support, phone/tablet setup, smart home device installation, home office setup, senior-friendly in-home tech support, small business IT assistance, IT strategy and purchasing consulting, computer support & device security, and website design & development.
 
 ## Pages
 
 - [Home](https://easytechvancouver.ca/): Overview of IT support services, pricing, tech tips, and contact information for EasyTech.
-- [Business IT Support](https://easytechvancouver.ca/business-it-support): IT services for small businesses in Metro Vancouver, including network security, Microsoft 365 & email migration, cloud backups, employee tech training, and IT consulting.
+- [Business IT Support](https://easytechvancouver.ca/business-it-support): IT services for small businesses in Metro Vancouver, including network security, Microsoft 365 & email migration, cloud backups, employee tech training, and IT strategy and purchasing consulting.
 - [Senior Tech Support](https://easytechvancouver.ca/senior-tech-support): Patient, jargon-free in-home tech support for seniors, covering phones/tablets, computers, Smart TVs, and online safety/scam protection.
 - [Contact](https://easytechvancouver.ca/contact): Request a free quote or book a service by phone, WhatsApp, or contact form.
 - [Privacy Policy](https://easytechvancouver.ca/privacy-policy): What information EasyTech collects, how it's used, and your choices.
