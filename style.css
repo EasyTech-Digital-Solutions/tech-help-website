@@ -284,10 +284,25 @@ img {
 }
 
 .hero .tagline {
-  font-size: 1.15rem;
-  margin-bottom: 1rem;
-  opacity: 0.95;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 640px;
+  margin: 0 auto 0.85rem;
+  opacity: 0.92;
+  font-weight: 400;
   z-index: 1;
+  position: relative;
+}
+
+.hero .hero-subtext {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: 1rem;
+  z-index: 1;
+  position: relative;
 }
 
 .hero p {
