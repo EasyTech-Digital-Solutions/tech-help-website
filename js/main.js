@@ -8,6 +8,27 @@ if (scrollNav && heroNavTrigger && 'IntersectionObserver' in window) {
   navObserver.observe(heroNavTrigger);
 }
 
+const navHamburger = document.querySelector('.nav-hamburger');
+if (scrollNav && navHamburger) {
+  const closeMobileNav = () => {
+    scrollNav.classList.remove('nav-open');
+    navHamburger.setAttribute('aria-expanded', 'false');
+  };
+
+  navHamburger.addEventListener('click', () => {
+    const isOpen = scrollNav.classList.toggle('nav-open');
+    navHamburger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  scrollNav.querySelectorAll('.scroll-nav-menu a').forEach(link => {
+    link.addEventListener('click', closeMobileNav);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMobileNav();
+  });
+}
+
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){entry.target.classList.add('visible');}
