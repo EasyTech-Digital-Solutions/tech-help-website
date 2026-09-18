@@ -334,7 +334,7 @@ img {
 }
 
 .cta {
-  background: #2ecc71;
+  background: #1e8449;
   color: #fff;
   padding: 1rem 1.6rem;
   border-radius: 10px;
@@ -361,11 +361,11 @@ img {
 }
 
 .cta:hover {
-  background: #27ae60;
+  background: #186a3b;
 }
 
 .cta-secondary {
-  background: #3498db;
+  background: #2471a3;
   color: #fff;
   padding: 1rem 1.6rem;
   border-radius: 10px;
@@ -625,7 +625,7 @@ h3 {
 .tip-text .cta {
   margin-top: 0.8rem;
   display: inline-block;
-  background: #1abc9c;
+  background: #117864;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -637,7 +637,7 @@ h3 {
 }
 
 .tip-text .cta:hover {
-  background: #17a589;
+  background: #0d5e4e;
 }
 
 @media (max-width: 640px) {
@@ -951,7 +951,7 @@ button:hover {
 
 .contact .cta {
   display: inline-block;
-  background: #2ecc71;
+  background: #1e8449;
   color: #fff;
   padding: 1rem 1.6rem;
   border-radius: 10px;
@@ -964,11 +964,11 @@ button:hover {
 }
 
 .contact .cta:hover {
-  background: #27ae60;
+  background: #186a3b;
 }
 
 .contact .cta-secondary {
-  background: #3498db;
+  background: #2471a3;
   color: #fff;
   padding: 1rem 1.6rem;
   border-radius: 10px;
@@ -981,7 +981,7 @@ button:hover {
 }
 
 .contact .cta-secondary:hover {
-  background: #2980b9;
+  background: #1c5980;
 }
 
 /* ============================================
