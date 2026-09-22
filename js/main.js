@@ -38,7 +38,7 @@ document.querySelectorAll('.service-row, .tip-card').forEach(el => observer.obse
 
 document.querySelectorAll('.tip-read-more').forEach(btn => {
   btn.addEventListener('click', function(){
-    const card = this.closest('.tip-card');
+    const card = this.closest('.tip-card') || this.closest('.readmore-clamp');
     const expanded = card.classList.toggle('expanded');
     this.textContent = expanded ? 'Read less' : 'Read more';
     this.setAttribute('aria-expanded', expanded);

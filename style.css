@@ -657,6 +657,50 @@ h3 {
   overflow: visible;
 }
 
+.readmore-clamp {
+  position: relative;
+}
+
+.intro-card .readmore-clamp p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0;
+  line-height: 1.8rem;
+  max-height: 5.4rem;
+}
+
+.readmore-clamp .tip-read-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  min-height: auto;
+  padding: 0 0 0 2rem;
+  font-size: 1rem;
+  line-height: 1.8rem;
+  align-items: flex-end;
+  background: linear-gradient(to right, transparent, #fff 35%);
+}
+
+.intro-card .readmore-clamp.expanded p {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+  max-height: none;
+}
+
+.readmore-clamp.expanded .tip-read-more {
+  position: static;
+  display: inline-flex;
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.6rem;
+  background: none;
+}
+
 .tip-read-more {
   display: inline-flex;
   align-items: center;
