@@ -87,32 +87,91 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "EasyTech",
-  "legalName": "EasyTech Digital Solutions",
-  "image": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
-  "@id": "https://easytechvancouver.ca/",
-  "url": "https://easytechvancouver.ca/",
-  "telephone": "+18194342389",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Coquitlam",
-    "addressRegion": "BC",
-    "postalCode": "V3K 6X5",
-    "addressCountry": "CA"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 49.1768374,
-    "longitude": -122.9222895
-  },
-  "openingHours": ["Mo-Fr 17:30-22:00", "Sa-Su 10:00-22:00"],
-  "description": "EasyTech provides friendly local IT support in Coquitlam, Burnaby, Surrey, Vancouver, and Maple Ridge. TV & sound setup, Wi‑Fi & network support, smart home devices, home office setup, senior‑friendly tech guidance, and small business IT assistance.",
-  "sameAs": [
-    "https://www.facebook.com/groups/easytechmetrovancouver/",
-    "https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu",
-    "https://www.linkedin.com/company/easytech-digital-solutions/"
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "EasyTech",
+      "legalName": "EasyTech Digital Solutions",
+      "image": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
+      "@id": "https://easytechvancouver.ca/#business",
+      "url": "https://easytechvancouver.ca/",
+      "telephone": "+18194342389",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Coquitlam",
+        "addressRegion": "BC",
+        "postalCode": "V3K 6X5",
+        "addressCountry": "CA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.1768374,
+        "longitude": -122.9222895
+      },
+      "openingHours": [
+        "Mo-Fr 17:30-22:00",
+        "Sa-Su 10:00-22:00"
+      ],
+      "description": "EasyTech provides friendly local IT support in Coquitlam, Burnaby, Surrey, Vancouver, and Maple Ridge. TV & sound setup, Wi‑Fi & network support, smart home devices, home office setup, senior‑friendly tech guidance, and small business IT assistance.",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61587106324816",
+        "https://www.instagram.com/easytechvancouver",
+        "https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895",
+        "https://www.linkedin.com/company/easytech-digital-solutions/"
+      ],
+      "logo": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "Burnaby"
+        },
+        {
+          "@type": "City",
+          "name": "Surrey"
+        },
+        {
+          "@type": "City",
+          "name": "Vancouver"
+        },
+        {
+          "@type": "City",
+          "name": "Port Moody"
+        },
+        {
+          "@type": "City",
+          "name": "Port Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "Maple Ridge"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+18194342389",
+        "contactType": "Customer Service",
+        "areaServed": "CA-BC",
+        "availableLanguage": [
+          "en"
+        ]
+      },
+      "hasMap": "https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://easytechvancouver.ca/#website",
+      "url": "https://easytechvancouver.ca/",
+      "name": "EasyTech",
+      "inLanguage": "en-CA",
+      "publisher": {
+        "@id": "https://easytechvancouver.ca/#business"
+      }
+    }
   ]
 }
 </script>
@@ -280,45 +339,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 
 <!-- Contact Schema for Local Search -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ContactPoint",
-  "telephone": "+18194342389",
-  "contactType": "Customer Service",
-  "areaServed": ["Coquitlam", "Burnaby", "Surrey", "Vancouver", "Port Moody", "Port Coquitlam", "Maple Ridge"],
-  "availableLanguage": ["en"]
-}
-</script>
 
 <!-- Organization Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "EasyTech",
-  "legalName": "EasyTech Digital Solutions",
-  "url": "https://easytechvancouver.ca/",
-  "logo": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
-  "description": "Local IT support in Metro Vancouver for homes and small businesses",
-  "telephone": "+18194342389",
-  "areaServed": {
-    "@type": "State",
-    "name": "British Columbia"
-  },
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61587106324816",
-    "https://www.instagram.com/easytechvancouver",
-    "https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895",
-    "https://www.linkedin.com/company/easytech-digital-solutions/"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+18194342389",
-    "contactType": "Customer Service"
-  }
-}
-</script>
 
 </head>
 <body>
