@@ -1,10 +1,10 @@
 const JSON_HEADERS = {
   'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://easytechvancouver.ca',
 };
 
 const OPTIONS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Origin': 'https://easytechvancouver.ca',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
@@ -29,11 +29,11 @@ async function handleRequest(request, env) {
   }
 
   if (!env?.GRAPH_TENANT_ID || !env?.GRAPH_CLIENT_ID || !env?.GRAPH_CLIENT_SECRET) {
-    return jsonResponse({ error: 'Microsoft Graph credentials not configured' }, 500);
+    return jsonResponse({ error: 'Service temporarily unavailable' }, 500);
   }
 
   if (!env?.TURNSTILE_SECRET_KEY) {
-    return jsonResponse({ error: 'Turnstile secret not configured' }, 500);
+    return jsonResponse({ error: 'Service temporarily unavailable' }, 500);
   }
 
   const body = await request.json().catch(() => null);
@@ -91,7 +91,7 @@ async function handleRequest(request, env) {
         html: `
           <div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
             <div style="text-align: center; padding: 24px 0;">
-              <img src="https://easytechvancouver.ca/images/easytech-logo.webp" alt="EasyTech" width="120">
+              <img src="https://easytechvancouver.ca/images/easytech-logo-dark-text.webp" alt="EasyTech" width="120">
             </div>
             <div style="background: linear-gradient(135deg, #1abc9c, #3498db); border-radius: 10px 10px 0 0; padding: 24px; text-align: center;">
               <h1 style="color: #fff; margin: 0; font-size: 1.4rem;">We've received your request!</h1>
@@ -127,7 +127,7 @@ async function handleRequest(request, env) {
   } catch (error) {
     console.error('Email send failed', error);
     return jsonResponse(
-      { error: 'Send failed', details: error?.message || 'Unknown email error' },
+      { error: 'Send failed' },
       500,
     );
   }

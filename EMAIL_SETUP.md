@@ -1,168 +1,60 @@
-## Contact Form Setup: Cloudflare Worker, Turnstile & Gmail
+## Contact Form Setup: Cloudflare Worker, Turnstile & Microsoft Graph
 
-This project uses a free workflow:
+How the contact form works:
 
-- Cloudflare Turnstile protects the contact form from bots/spam (no Google Cloud account or billing required).
-- Cloudflare Email Routing forwards `admin@easytechvancouver.ca` to your Gmail inbox.
-- The contact form Worker verifies the Turnstile token, then sends a notification email from `admin@easytechvancouver.ca` to your Gmail inbox.
-- Replies to contact form notifications go to the customer because the Worker sets `Reply-To`.
-- A branded auto-reply email to the customer exists in the Worker code but is currently **disabled** (`AUTO_REPLY_ENABLED = "false"` in [wrangler.toml](/workspaces/tech-help-website/wrangler.toml)). Cloudflare's `send_email` binding can only deliver to one fixed `destination_address`, so it can't send to arbitrary customer addresses. Re-enabling this requires wiring up a separate free email API for the customer-facing message.
+- The form on [contact.html](contact.html) posts JSON to `/api/contact`.
+- [cloudflare/contact-worker.js](cloudflare/contact-worker.js) handles that route. It checks the honeypot field, then verifies the Cloudflare Turnstile token.
+- The Worker sends a notification to `SEND_TO` (`admin@easytechvancouver.ca`) through the Microsoft Graph `sendMail` API. `Reply-To` is set to the customer, so replying goes to them.
+- If `AUTO_REPLY_ENABLED` is `"true"` (it is, in [wrangler.toml](wrangler.toml)), the Worker also sends the customer a branded confirmation.
+- Non-secret config lives in [wrangler.toml](wrangler.toml): `SEND_FROM`, `SEND_TO`, `AUTO_REPLY_ENABLED` and the two routes (`easytechvancouver.ca/api/contact` and `www.easytechvancouver.ca/api/contact`).
 
-The receiving inbox is:
+### 1. Microsoft Graph (mail sending)
 
-```text
-abhijeet.karmaker@gmail.com
-```
+In Microsoft Entra (Azure AD), register an app and grant it the **Mail.Send** *application* permission with admin consent. The mailbox in `SEND_FROM` must exist in the tenant. Consider restricting the app to that mailbox with an Exchange application access policy.
 
-### 1. Set up Cloudflare Email Routing
+### 2. Turnstile
 
-In the Cloudflare dashboard for `easytechvancouver.ca`:
+1. In the Cloudflare dashboard, go to `Turnstile` and create a widget for `easytechvancouver.ca` (add `www.` too).
+2. The **Site Key** is hardcoded in `contact.html` (`turnstile.render(... sitekey: ...)`). Update it there if you create a new widget.
+3. The **Secret Key** is a Worker secret (see below).
 
-1. Go to `Email` -> `Email Routing`.
-2. Select `Add records and enable`.
-3. Let Cloudflare add the required `MX` and `TXT` DNS records.
-4. If Cloudflare warns about existing `MX` records, remove the old mail provider records unless you are intentionally using another mail service.
-5. Go to `Routing rules`.
-6. Under `Custom addresses`, select `Create address`.
-7. Create this address:
-   - Custom address: `admin`
-   - Destination: `abhijeet.karmaker@gmail.com`
-8. Save the rule.
-9. Open the Cloudflare verification email in Gmail and click `Verify email address`.
-10. Return to Cloudflare and confirm the destination status is `Verified` and the route is `Active`.
-
-After this, mail sent to `admin@easytechvancouver.ca` will arrive in Gmail for free.
-
-### 2. Set up Cloudflare Turnstile
-
-In the Cloudflare dashboard:
-
-1. Go to `Turnstile`.
-2. Create a widget for `easytechvancouver.ca` (add `www.easytechvancouver.ca` too).
-3. Copy the **Site Key** and **Secret Key**.
-4. The Site Key is hardcoded in [contact.html](/workspaces/tech-help-website/contact.html) (`turnstile.render(... sitekey: '0x4AAAAAADiJZamPHvtx8ukB' ...)`). Update it there if you create a new widget.
-5. The Secret Key must be set as a Worker secret (see step 4 below).
-
-### 3. Confirm the Worker configuration
-
-The repo is already configured in [wrangler.toml](/workspaces/tech-help-website/wrangler.toml):
-
-- `SEND_FROM` is set to `admin@easytechvancouver.ca`
-- `SEND_TO` is set to `abhijeet.karmaker@gmail.com`
-- `AUTO_REPLY_ENABLED` is `"false"` (customer auto-reply disabled — see note above)
-- `[[send_email]].destination_address` is set to `abhijeet.karmaker@gmail.com`
-- Worker routes are set for `easytechvancouver.ca/api/contact` and `www.easytechvancouver.ca/api/contact`
-
-Cloudflare requires the sender address to use a domain that has Email Routing active, so keep `SEND_FROM` on `easytechvancouver.ca`. The Gmail destination must also be verified in Email Routing before the Worker can send to it.
-
-### 4. Set secrets and deploy
-
-Install Wrangler if needed:
-
-```bash
-npm install --save-dev wrangler
-```
-
-Log in to Cloudflare:
+### 3. Secrets and deploy
 
 ```bash
 npx wrangler login
-```
-
-Set the Turnstile secret used by the contact form:
-
-```bash
+npx wrangler secret put GRAPH_TENANT_ID
+npx wrangler secret put GRAPH_CLIENT_ID
+npx wrangler secret put GRAPH_CLIENT_SECRET
 npx wrangler secret put TURNSTILE_SECRET_KEY
-```
-
-Deploy the Worker:
-
-```bash
 npx wrangler deploy
 ```
 
-If you want to test the Worker locally with Cloudflare's remote email binding, run:
+If any of these secrets is missing, the Worker returns a generic "Service temporarily unavailable" (HTTP 500) and nothing is sent. Details are not exposed to the browser.
 
-```bash
-npx wrangler dev --remote
-```
+### 4. Test
 
-### 5. Test the setup
+1. Open `https://easytechvancouver.ca/contact`, complete Turnstile, and submit a real message.
+2. Confirm the notification arrives at `SEND_TO`, and that replying goes to the address you submitted.
+3. Confirm the auto-reply arrives at the address you submitted, with the logo showing.
 
-1. Send a normal email to `admin@easytechvancouver.ca`.
-2. Confirm it arrives in `abhijeet.karmaker@gmail.com`.
-3. Open `https://easytechvancouver.ca/contact.html`.
-4. Complete the Turnstile widget and submit a real test message through the form.
-5. Confirm the form notification arrives in Gmail.
-6. In Gmail, press `Reply` on the notification. It should reply to the customer's email address because the Worker sets `Reply-To`.
-
-For a command-line Worker test after deploy, replace the sample values and run:
+A command-line test needs a real Turnstile token from the browser. With a missing or fake token the Worker returns a Turnstile error, which still proves the route is reachable:
 
 ```bash
 curl -i https://easytechvancouver.ca/api/contact \
   -H "Content-Type: application/json" \
-  --data '{"name":"Test User","email":"test@example.com","phone":"604-555-0100","message":"Testing the contact form.","cf-turnstile-response":"TURNSTILE_TOKEN_FROM_BROWSER"}'
+  --data '{"name":"Test User","email":"test@example.com","message":"Testing.","cf-turnstile-response":"TOKEN"}'
 ```
 
-The `curl` test needs a real Turnstile token from the browser. If the token is missing or fake, the Worker should return a Turnstile verification error, which still proves the Worker route is reachable.
+### 5. If Cloudflare security blocks `/api/contact`
 
-### 6. Fix Cloudflare security blocking `/api/contact`
-
-If the form shows an error and a direct test returns a Cloudflare `403` challenge, Cloudflare security is intercepting the AJAX request before it reaches the Worker.
-
-In the Cloudflare dashboard:
-
-1. Go to `Security` -> `WAF` -> `Custom rules`.
-2. Create a rule named `Allow contact form Worker`.
-3. Use this expression:
+If the form errors and a direct test returns a Cloudflare `403` challenge page, add a WAF custom rule (`Security` -> `WAF` -> `Custom rules`):
 
 ```text
 (http.host in {"easytechvancouver.ca" "www.easytechvancouver.ca"} and http.request.uri.path eq "/api/contact")
 ```
 
-4. Choose action `Skip`.
-5. Skip these products if shown:
-   - WAF Managed Rules
-   - Super Bot Fight Mode / Bot Fight Mode
-   - Browser Integrity Check
-   - Security Level
-6. Save and deploy the rule.
+Action `Skip` for WAF Managed Rules, Bot Fight Mode, Browser Integrity Check and Security Level. Keep Turnstile enabled in the form and the Worker.
 
-Keep Turnstile enabled in the form and Worker. This lets your own spam check run while preventing Cloudflare from returning an HTML challenge to the form submission.
+### 6. CORS
 
-### 7. How the contact form works
-
-- Visitors submit the form on `contact.html` after completing the Turnstile challenge.
-- The Worker verifies the Turnstile token with Cloudflare, then sends the notification to your Gmail inbox.
-- In Gmail, pressing Reply sends your response to the customer because of the email `Reply-To` header.
-
-### 8. Important free-plan limitation
-
-This is forwarding into Gmail, not a true Gmail-hosted mailbox for your domain.
-
-- Receiving at `admin@easytechvancouver.ca`: yes, free through Cloudflare forwarding.
-- Contact form notifications from `admin@easytechvancouver.ca`: yes, through the Cloudflare Worker email binding.
-- Replying to customers from Gmail after a form submission: yes, but by default the reply is sent from your Gmail address while replying to the customer's email.
-- Sending new Gmail messages as `admin@easytechvancouver.ca`: not included automatically for free.
-- Full mailbox at `admin@easytechvancouver.ca` inside Gmail: requires Google Workspace.
-
-### 9. Sending as `admin@easytechvancouver.ca`
-
-To send regular outbound emails from Gmail with the `admin@easytechvancouver.ca` sender, use one of these options:
-
-1. Google Workspace: creates a real Gmail mailbox for `admin@easytechvancouver.ca`.
-2. Gmail "Send mail as" plus an SMTP provider: add `admin@easytechvancouver.ca` in Gmail settings and use SMTP credentials from a mail service that supports your domain.
-
-Cloudflare Email Routing alone forwards inbound mail. It does not create a full Gmail mailbox or SMTP login for outbound Gmail sending.
-
-### 10. Customer auto-reply (pending)
-
-The Worker already contains a branded HTML/text auto-reply (logo, "24-48 hours" message, phone/WhatsApp, social links) that would be sent to the customer's own email address. It's gated behind `AUTO_REPLY_ENABLED` and currently off because Cloudflare's `send_email` binding only allows sending to the single `destination_address` configured in `[[send_email]]` — not to arbitrary customer addresses.
-
-To enable it:
-
-1. Pick a free transactional email API that allows sending to arbitrary recipients (e.g. Brevo, Mailjet, SMTP2GO — Resend and SendGrid have been ruled out).
-2. Verify `easytechvancouver.ca` as a sending domain with that provider (DNS records added in Cloudflare).
-3. Update the `if (autoReplyEnabled) { ... }` block in [cloudflare/contact-worker.js](/workspaces/tech-help-website/cloudflare/contact-worker.js) to call that provider's HTTP API instead of the Cloudflare email binding.
-4. Set the provider's API key as a Worker secret (`npx wrangler secret put <PROVIDER>_API_KEY`).
-5. Set `AUTO_REPLY_ENABLED = "true"` in `wrangler.toml` and redeploy.
+The Worker only allows the origin `https://easytechvancouver.ca`. The form is same-origin, and `www` redirects to the apex domain. If the form is ever hosted on another origin, update `JSON_HEADERS` and `OPTIONS_HEADERS` in the Worker.

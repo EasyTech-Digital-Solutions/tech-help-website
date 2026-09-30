@@ -247,8 +247,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               if (currentMsgDiv) {
                 const cloudflareBlocked = response.status === 403 && !contentType.includes('application/json');
                 currentMsgDiv.textContent = cloudflareBlocked
-                  ? 'Cloudflare blocked the contact form request. Please try WhatsApp or call 819-434-2389 while we finish the email setup.'
-                  : result.details || result.error || `There was an error sending your request. Status: ${response.status}`;
+                  ? 'Cloudflare blocked the contact form request. Please try WhatsApp or call 819-434-2389 instead.'
+                  : result.error || `There was an error sending your request. Status: ${response.status}`;
                 currentMsgDiv.style.display = 'block';
                 currentMsgDiv.style.color = '#e74c3c';
               }

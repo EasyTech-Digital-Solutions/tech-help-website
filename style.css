@@ -909,7 +909,7 @@ textarea {
 }
 
 button {
-  background: #1abc9c;
+  background: #0f8069;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -922,7 +922,7 @@ button {
 }
 
 button:hover {
-  background: #15a589;
+  background: #0b6a57;
 }
 
 .small {
@@ -1129,6 +1129,7 @@ button:hover {
 .footer-links a,
 .footer-contact a {
   display: inline-block;
+  padding: 0.2rem 0;
   margin: 0;
   color: #35d9bd;
   text-decoration: none;

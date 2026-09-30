@@ -44,25 +44,3 @@ document.querySelectorAll('.tip-read-more').forEach(btn => {
     this.setAttribute('aria-expanded', expanded);
   });
 });
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-
-function loadAnalytics() {
-  if (window.easyTechAnalyticsLoaded) return;
-  window.easyTechAnalyticsLoaded = true;
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-T2SYY041LV';
-  document.head.appendChild(script);
-  gtag('js', new Date());
-  gtag('config', 'G-T2SYY041LV');
-}
-
-window.addEventListener('load', () => {
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(loadAnalytics, { timeout: 3000 });
-  } else {
-    setTimeout(loadAnalytics, 1500);
-  }
-});
