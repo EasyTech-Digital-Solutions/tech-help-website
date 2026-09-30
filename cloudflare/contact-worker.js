@@ -89,35 +89,29 @@ async function handleRequest(request, env) {
         to: email,
         subject: "We've received your request - EasyTech Vancouver",
         html: `
-          <div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-            <div style="text-align: center; padding: 24px 0;">
-              <img src="https://easytechvancouver.ca/images/easytech-logo-dark-text.webp" alt="EasyTech" width="120">
-            </div>
-            <div style="background: linear-gradient(135deg, #1abc9c, #3498db); border-radius: 10px 10px 0 0; padding: 24px; text-align: center;">
-              <h1 style="color: #fff; margin: 0; font-size: 1.4rem;">We've received your request!</h1>
-            </div>
-            <div style="border: 1px solid #dde5ef; border-top: none; border-radius: 0 0 10px 10px; padding: 24px;">
+          <div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; color: #333333; line-height: 1.5;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td bgcolor="#0f8069" style="background-color: #0f8069; padding: 22px 24px; text-align: center; color: #ffffff;">
+                  <div style="font-size: 20px; font-weight: bold; color: #ffffff;">EasyTech Vancouver</div>
+                  <div style="font-size: 14px; color: #ffffff;">We've received your request</div>
+                </td>
+              </tr>
+            </table>
+            <div style="border: 1px solid #dde5ef; border-top: none; padding: 24px;">
               <p>Hi ${escapeHtml(name)},</p>
-              <p>Thanks for reaching out to <strong>EasyTech Vancouver</strong>. We've received your request and a member of our support team will get back to you within <strong>24-48 hours</strong>.</p>
-              <p style="margin: 1.5rem 0; padding: 1rem; background: #f4faf9; border-left: 4px solid #1abc9c; border-radius: 6px;">
-                <strong>Your message:</strong><br>${toHtml(message)}
-              </p>
-              <p>If your issue is urgent, you can reach us directly:</p>
+              <p>Thanks for contacting <strong>EasyTech Vancouver</strong>. We've received your request and will get back to you within <strong>24-48 hours</strong>.</p>
+              <p>If your issue is urgent, call or message us:</p>
               <p>
-                Phone: <a href="tel:+18194342389" style="color: #1abc9c; text-decoration: none;">819-434-2389</a><br>
-                WhatsApp: <a href="https://wa.me/18194342389" style="color: #1abc9c; text-decoration: none;">Message us on WhatsApp</a>
+                Phone: <a href="tel:+18194342389" style="color: #0f8069;">819-434-2389</a><br>
+                WhatsApp: <a href="https://wa.me/18194342389" style="color: #0f8069;">wa.me/18194342389</a>
               </p>
               <p>Best regards,<br><strong>The EasyTech Vancouver Team</strong></p>
             </div>
-            <div style="text-align: center; padding: 24px 12px; color: #5d6f89; font-size: 0.85rem;">
-              <p style="margin: 0 0 8px;"><a href="https://easytechvancouver.ca" style="color: #3498db; text-decoration: none;">easytechvancouver.ca</a></p>
-              <p style="margin: 0 0 8px;">
-                <a href="https://www.facebook.com/profile.php?id=61587106324816" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Facebook</a> |
-                <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Instagram</a> |
-                <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" style="color: #5d6f89; text-decoration: none; margin: 0 6px;">Google</a>
-              </p>
-              <p style="margin: 0;">EasyTech &mdash; Local IT Consultant for Metro Vancouver<br>Coquitlam, Burnaby, Surrey &amp; Vancouver</p>
-            </div>
+            <p style="text-align: center; color: #5d6f89; font-size: 13px; margin: 16px 0 0;">
+              EasyTech &mdash; Local IT support for Metro Vancouver<br>
+              <a href="https://easytechvancouver.ca" style="color: #5d6f89;">easytechvancouver.ca</a>
+            </p>
           </div>
         `,
       });
