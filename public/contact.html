@@ -236,6 +236,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               ? await response.json().catch(() => ({}))
               : {};
             if (response.ok && result.success) {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({ event: 'generate_lead', lead_method: 'contact_form' });
               const card = form.closest('.card') || form;
               card.innerHTML = '<div style="padding:2.5rem 1rem;text-align:center;">'
                 + '<div style="width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#1abc9c;color:#fff;font-size:2rem;line-height:64px;">&#10003;</div>'
