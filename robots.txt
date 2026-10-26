@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/contact
 
 Sitemap: https://easytechvancouver.ca/sitemap.xml
