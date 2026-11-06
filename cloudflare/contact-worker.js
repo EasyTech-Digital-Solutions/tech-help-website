@@ -3,6 +3,10 @@ const JSON_HEADERS = {
   'Access-Control-Allow-Origin': 'https://easytechvancouver.ca',
 };
 
+const MAX_LENGTHS = { name: 100, email: 254, phone: 30, message: 5000 };
+const TURNSTILE_HOSTNAMES = ['easytechvancouver.ca', 'www.easytechvancouver.ca'];
+const TURNSTILE_ACTION = 'contact';
+
 const OPTIONS_HEADERS = {
   'Access-Control-Allow-Origin': 'https://easytechvancouver.ca',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -45,6 +49,11 @@ async function handleRequest(request, env) {
     return jsonResponse({ error: 'Spam detected' }, 400);
   }
 
+  const inputError = validateInput(body);
+  if (inputError) {
+    return jsonResponse({ error: inputError }, 400);
+  }
+
   const turnstileToken = body['cf-turnstile-response'];
   if (!turnstileToken) {
     return jsonResponse({ error: 'Turnstile verification required' }, 400);
@@ -56,7 +65,11 @@ async function handleRequest(request, env) {
     body: `secret=${encodeURIComponent(env.TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(turnstileToken)}`,
   });
   const turnstileResult = await turnstileVerify.json();
-  if (!turnstileResult.success) {
+  if (
+    !turnstileResult.success ||
+    !TURNSTILE_HOSTNAMES.includes(turnstileResult.hostname) ||
+    turnstileResult.action !== TURNSTILE_ACTION
+  ) {
     return jsonResponse({ error: 'Turnstile verification failed' }, 400);
   }
 
@@ -84,37 +97,38 @@ async function handleRequest(request, env) {
     });
 
     if (autoReplyEnabled) {
+      // The lead has already been delivered, so a failed auto-reply must not tell the visitor their request failed.
       await sendGraphEmail(env, graphToken, {
         from: sendFrom,
         to: email,
-        subject: "We've received your request - EasyTech Vancouver",
+        subject: "We've received your request - EasyTech Digital Solutions",
         html: `
           <div style="font-family: Arial, Helvetica, sans-serif; max-width: 600px; margin: 0 auto; color: #333333; line-height: 1.5;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td bgcolor="#0f8069" style="background-color: #0f8069; padding: 22px 24px; text-align: center; color: #ffffff;">
-                  <div style="font-size: 20px; font-weight: bold; color: #ffffff;">EasyTech Vancouver</div>
+                  <div style="font-size: 20px; font-weight: bold; color: #ffffff;">EasyTech Digital Solutions</div>
                   <div style="font-size: 14px; color: #ffffff;">We've received your request</div>
                 </td>
               </tr>
             </table>
             <div style="border: 1px solid #dde5ef; border-top: none; padding: 24px;">
-              <p>Hi ${escapeHtml(name)},</p>
-              <p>Thanks for contacting <strong>EasyTech Vancouver</strong>. We've received your request and will get back to you within <strong>24-48 hours</strong>.</p>
+              <p>Hi ${escapeHtml(greetingName(toDisplayValue(body.name)))},</p>
+              <p>Thanks for contacting <strong>EasyTech Digital Solutions</strong>. We've received your request and will reply as soon as possible, often the same day.</p>
               <p>If your issue is urgent, call or message us:</p>
               <p>
-                Phone: <a href="tel:+18194342389" style="color: #0f8069;">819-434-2389</a><br>
+                Phone: <a href="tel:+17789007135" style="color: #0f8069;">778-900-7135</a><br>
                 WhatsApp: <a href="https://wa.me/18194342389" style="color: #0f8069;">wa.me/18194342389</a>
               </p>
-              <p>Best regards,<br><strong>The EasyTech Vancouver Team</strong></p>
+              <p>Best regards,<br><strong>The EasyTech Digital Solutions Team</strong></p>
             </div>
             <p style="text-align: center; color: #5d6f89; font-size: 13px; margin: 16px 0 0;">
-              EasyTech &mdash; Local IT support for Metro Vancouver<br>
+              EasyTech Digital Solutions &mdash; Local IT support for Metro Vancouver<br>
               <a href="https://easytechvancouver.ca" style="color: #5d6f89;">easytechvancouver.ca</a>
             </p>
           </div>
         `,
-      });
+      }).catch((error) => console.error('Auto-reply failed', error));
     }
 
     return jsonResponse({ success: true }, 200);
@@ -178,6 +192,30 @@ function jsonResponse(payload, status) {
     status,
     headers: JSON_HEADERS,
   });
+}
+
+function validateInput(body) {
+  for (const [field, limit] of Object.entries(MAX_LENGTHS)) {
+    const value = body[field];
+    if (value != null && typeof value !== 'string') {
+      return 'Please check the form and try again.';
+    }
+    if (value && value.length > limit) {
+      return `Please shorten your ${field} to ${limit} characters or fewer.`;
+    }
+  }
+
+  if (!/^[^\s@<>,;]+@[^\s@<>,;]+\.[^\s@<>,;]+$/.test(body.email.trim())) {
+    return 'Please enter a valid email address.';
+  }
+
+  return null;
+}
+
+// The auto-reply can go to any address typed into the form, so it only repeats a plain first name, never free text or links.
+function greetingName(name) {
+  const firstWord = name.trim().split(/\s+/)[0] || '';
+  return /^[\p{L}][\p{L}\p{M}'’-]{0,29}$/u.test(firstWord) ? firstWord : 'there';
 }
 
 function toDisplayValue(value, fallback = '') {
