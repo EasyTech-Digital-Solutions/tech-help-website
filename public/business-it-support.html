@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
-<!-- Google Tag Manager -->
+  <meta charset="UTF-8">
+<!-- Google Tag Manager (starts once the page has loaded, or after 3 seconds, so it can't hold up the main content) -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+new Date().getTime(),event:'gtm.js'});var started=false,start=function(){if(started)return;started=true;
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);};
+w.addEventListener('load',start);setTimeout(start,3000);
 })(window,document,'script','dataLayer','GTM-MZZHBDJJ');</script>
 <!-- End Google Tag Manager -->
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" as="image" href="images/easytech-logo-white-text.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="images/hero-tech-bg.webp" type="image/webp" fetchpriority="high">
   <title>Small Business IT Support in Vancouver, Same-Day | EasyTech</title>
   <meta name="description" content="Small business IT support in Vancouver with same-day service. Computer & network help, Microsoft 365 and honest buying advice. Free quote: 778-900-7135.">
   <meta name="keywords" content="small business IT support Vancouver, business IT support Vancouver, IT services for small business near me, affordable IT support BC, IT services Vancouver, business IT services, computer support, IT support Vancouver, managed IT services, M365 migration Vancouver, business email migration, custom domain email setup">
@@ -30,10 +31,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:description" content="Small business IT support in Vancouver with same-day service. Computer & network help, Microsoft 365 and honest buying advice. Free quote: 778-900-7135.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://easytechvancouver.ca/business-it-support">
-  <meta property="og:image" content="https://easytechvancouver.ca/images/easytech-logo-dark-text.webp">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="EasyTech">
+  <meta property="og:image" content="https://easytechvancouver.ca/images/easytech-share-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="EasyTech logo with the text: Local IT Support for Metro Vancouver. Call: 778-900-7135">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Small Business IT Support in Vancouver | Same-Day Service | EasyTech">
   <meta name="twitter:description" content="Small business IT support in Vancouver with same-day service. Computer & network help, Microsoft 365 and honest buying advice. Free quote: 778-900-7135.">
+  <meta name="twitter:image" content="https://easytechvancouver.ca/images/easytech-share-1200x630.jpg">
   
   <style>
 *{box-sizing:border-box}
@@ -80,14 +88,34 @@ img{max-width:100%;height:auto}
   "@graph": [
     {
       "@type": "LocalBusiness",
+      "@id": "https://easytechvancouver.ca/#business",
       "name": "EasyTech Digital Solutions",
       "alternateName": "EasyTech",
       "legalName": "EasyTech Digital Solutions",
-      "image": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
-      "@id": "https://easytechvancouver.ca/#business",
       "url": "https://easytechvancouver.ca/",
+      "logo": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
+      "image": [
+        "https://easytechvancouver.ca/images/easytech-share-1200x630.jpg",
+        "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp"
+      ],
+      "description": "EasyTech provides friendly local IT support in Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, and Maple Ridge. TV & sound setup, Wi-Fi & network support, smart home devices, home office setup, senior-friendly tech guidance, and small business IT assistance.",
       "telephone": "+17789007135",
       "priceRange": "$$",
+      "foundingDate": "2026",
+      "founder": {
+        "@type": "Person",
+        "name": "Abhi",
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Microsoft 365 Certified: Fundamentals"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Fortinet Network Security Expert (NSE 2) Certified Associate"
+          }
+        ]
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Coquitlam",
@@ -95,29 +123,109 @@ img{max-width:100%;height:auto}
         "postalCode": "V3K 6X5",
         "addressCountry": "CA"
       },
-      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver","Port Moody","Port Coquitlam","Maple Ridge"],
-      "openingHours": ["Mo-Fr 09:00-22:00", "Sa-Su 10:00-22:00"],
-      "description": "Affordable business IT support for small companies in Metro Vancouver: network setup and security, computer support, Microsoft 365 and cloud solutions, email configuration, backups, employee training, and IT strategy and purchasing consulting.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.24,
+        "longitude": -122.85
+      },
+      "hasMap": "https://maps.google.com/?cid=12231705935432378570",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "22:00"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Coquitlam",
+          "sameAs": "https://en.wikipedia.org/wiki/Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "Port Coquitlam",
+          "sameAs": "https://en.wikipedia.org/wiki/Port_Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "North Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/North_Vancouver_(city)"
+        },
+        {
+          "@type": "City",
+          "name": "West Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/West_Vancouver"
+        },
+        {
+          "@type": "City",
+          "name": "Burnaby",
+          "sameAs": "https://en.wikipedia.org/wiki/Burnaby"
+        },
+        {
+          "@type": "City",
+          "name": "Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/Vancouver"
+        },
+        {
+          "@type": "City",
+          "name": "Surrey",
+          "sameAs": "https://en.wikipedia.org/wiki/Surrey,_British_Columbia"
+        },
+        {
+          "@type": "City",
+          "name": "Maple Ridge",
+          "sameAs": "https://en.wikipedia.org/wiki/Maple_Ridge,_British_Columbia"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+17789007135",
+        "contactType": "Customer Service",
+        "areaServed": "CA-BC",
+        "availableLanguage": [
+          "en"
+        ]
+      },
       "sameAs": [
         "https://www.facebook.com/profile.php?id=61587106324816",
         "https://www.instagram.com/easytechvancouver",
+        "https://maps.google.com/?cid=12231705935432378570",
         "https://www.linkedin.com/company/easytech-digital-solutions/"
       ]
     },
     {
       "@type": "Service",
       "name": "Business IT Support",
+      "url": "https://easytechvancouver.ca/business-it-support",
       "serviceType": "Small business IT support and consulting",
       "provider": {"@id": "https://easytechvancouver.ca/#business"},
-      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver","Port Moody","Port Coquitlam","Maple Ridge"],
+      "areaServed": ["Coquitlam","Port Coquitlam","North Vancouver","West Vancouver","Burnaby","Vancouver","Surrey","Maple Ridge"],
       "description": "Business IT support for small companies including network security setup, computer and device support, Microsoft 365 and cloud solutions, email configuration, backup services, employee tech training, printer setup, and IT strategy and purchasing consulting."
     },
     {
       "@type": "Service",
       "name": "IT Strategy & Purchasing Consulting",
+      "url": "https://easytechvancouver.ca/business-it-support",
       "serviceType": "IT consulting",
       "provider": {"@id": "https://easytechvancouver.ca/#business"},
-      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver","Port Moody","Port Coquitlam","Maple Ridge"],
+      "areaServed": ["Coquitlam","Port Coquitlam","North Vancouver","West Vancouver","Burnaby","Vancouver","Surrey","Maple Ridge"],
       "description": "Vendor-neutral advice for small businesses on what technology to buy, upgrade, or avoid, including hardware refresh planning, software licensing decisions, and technology roadmaps tailored to budget and goals."
     },
     {
@@ -236,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><strong>No enterprise markup:</strong> The same qualified support (Microsoft 365 Certified, Fortinet NSE 2) at rates built for BC small businesses, not corporate accounts.</li>
       </ul>
 
-      <p>Businesses across Coquitlam, Burnaby, Surrey, Vancouver, Port Moody, Port Coquitlam, and Maple Ridge use EasyTech for exactly this: affordable IT support in BC that doesn't cut corners on computer support quality. Call <strong>778-900-7135</strong> or WhatsApp <strong>819-434-2389</strong> for a free quote on what affordable computer support would cost for your setup.</p>
+      <p>Businesses across Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, and Maple Ridge use EasyTech for exactly this: affordable IT support in BC that doesn't cut corners on computer support quality. Call <strong>778-900-7135</strong> or WhatsApp <strong>819-434-2389</strong> for a free quote on what affordable computer support would cost for your setup.</p>
     </div>
   </section>
 
@@ -391,7 +499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section aria-label="Service areas" role="region">
     <h2>Business IT Support Across Metro Vancouver</h2>
     <div class="intro-card">
-      <p style="text-align: center; font-size: 1.05rem; color: #666;">We serve businesses in <strong>Coquitlam, Burnaby, Surrey, Vancouver, Port Moody, Port Coquitlam, Maple Ridge,</strong> and surrounding areas. Call <strong>778-900-7135</strong> to confirm service availability in your area or request a home visit.</p>
+      <p style="text-align: center; font-size: 1.05rem; color: #666;">We serve businesses in <strong>Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, Maple Ridge,</strong> and surrounding areas. Call <strong>778-900-7135</strong> to confirm service availability in your area or request a home visit.</p>
 
       <h3 id="coquitlam-it-support">IT Services in Coquitlam</h3>
       <p>EasyTech is based right here in Coquitlam, so local businesses get fast response times and on-site visits with no travel surcharge. We handle network setup and security, computer and device support, Microsoft 365 configuration, and ongoing IT support for Coquitlam companies of all sizes.</p>
@@ -422,7 +530,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service-row testimonial-card">
           <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
           <p class="testimonial-quote">"Abhi provided fast support to get new Microsoft business emails and products up and running. Appreciated his guidance and support."</p>
-          <p class="testimonial-author">Lois N., <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener">Google Review</a></p>
+          <p class="testimonial-author">Lois N., <a href="https://maps.google.com/?cid=12231705935432378570" target="_blank" rel="noopener">Google Review</a></p>
       </div>
       <div class="service-row testimonial-card">
           <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
@@ -525,7 +633,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://www.facebook.com/profile.php?id=61587106324816" target="_blank" rel="noopener" aria-label="Visit EasyTech on Facebook">
           <img src="images/facebook-icon.png" alt="EasyTech Facebook" width="32" height="32" loading="lazy">
       </a>
-      <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
+      <a href="https://maps.google.com/?cid=12231705935432378570" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
           <img src="images/google-icon.png" alt="EasyTech Google Business" width="32" height="32" loading="lazy">
       </a>
       <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow EasyTech on Instagram">

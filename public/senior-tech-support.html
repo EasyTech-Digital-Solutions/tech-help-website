@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
-<!-- Google Tag Manager -->
+  <meta charset="UTF-8">
+<!-- Google Tag Manager (starts once the page has loaded, or after 3 seconds, so it can't hold up the main content) -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+new Date().getTime(),event:'gtm.js'});var started=false,start=function(){if(started)return;started=true;
+var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);};
+w.addEventListener('load',start);setTimeout(start,3000);
 })(window,document,'script','dataLayer','GTM-MZZHBDJJ');</script>
 <!-- End Google Tag Manager -->
-  <meta charset="UTF-8">
   <title>Senior-Friendly Tech Support | In-Home IT Help | EasyTech</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preload" as="image" href="images/easytech-logo-white-text.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="images/hero-tech-bg.webp" type="image/webp" fetchpriority="high">
   <meta name="description" content="Patient, senior-friendly tech support in Metro Vancouver. In-home IT help with phones, computers, Wi-Fi, Smart TVs, and online safety. Call 778-900-7135.">
   <meta name="keywords" content="senior tech support Vancouver, tech help for seniors, in-home tech support for seniors, computer help seniors, EasyTech senior support">
   <meta name="author" content="EasyTech">
@@ -28,17 +29,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180x180.png">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Senior-Friendly Tech Support | In-Home IT Help | EasyTech Vancouver">
+  <meta property="og:title" content="Senior-Friendly Tech Support | In-Home IT Help | EasyTech">
   <meta property="og:description" content="Patient, senior-friendly tech support in Metro Vancouver. In-home IT help with phones, computers, Wi-Fi, Smart TVs, and online safety. Call 778-900-7135.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://easytechvancouver.ca/senior-tech-support">
-  <meta property="og:image" content="https://easytechvancouver.ca/images/easytech-logo-dark-text.webp">
+  <meta property="og:site_name" content="EasyTech">
+  <meta property="og:image" content="https://easytechvancouver.ca/images/easytech-share-1200x630.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="EasyTech logo with the text: Local IT Support for Metro Vancouver. Call: 778-900-7135">
   <meta property="og:locale" content="en_CA">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Senior-Friendly Tech Support | In-Home IT Help | EasyTech Vancouver">
+  <meta name="twitter:title" content="Senior-Friendly Tech Support | In-Home IT Help | EasyTech">
   <meta name="twitter:description" content="Patient, in-home tech support for seniors across Coquitlam, Burnaby, Surrey & Vancouver. Phones, computers, Wi-Fi, Smart TVs & online safety.">
+  <meta name="twitter:image" content="https://easytechvancouver.ca/images/easytech-share-1200x630.jpg">
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+*{box-sizing:border-box}
+html{overflow-x:hidden}
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f7fa;color:#333;line-height:1.6;scroll-behavior:smooth;overflow-x:hidden}
+img{max-width:100%;height:auto}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.scroll-navbar{position:fixed;top:0;left:0;width:100%;z-index:999;transform:translateY(-100%);opacity:0}
+.hero{position:relative;background:linear-gradient(135deg,#1abc9c,#3498db,#9b59b6,#e74c3c);background-size:400% 400%;color:#fff;text-align:center;padding:6rem 1rem;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:400px}
+.hero-nav-trigger{position:absolute;top:30%;left:0;width:1px;height:1px;pointer-events:none}
+.hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url('images/hero-tech-bg.webp') center/cover no-repeat;opacity:.2;z-index:0}
+.hero img{width:min(300px,78vw);height:auto;aspect-ratio:474/171;margin-bottom:1rem;z-index:1;position:relative}
+.hero h1{font-size:clamp(2rem,6vw,3.5rem);margin:.5rem 0;z-index:1;position:relative;font-weight:700}
+.hero .tagline{font-size:1.05rem;line-height:1.6;max-width:640px;margin:0 auto .85rem;opacity:.92;font-weight:400;z-index:1;position:relative}
+.hero .hero-subtext{font-size:.95rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;opacity:.85;margin-bottom:1rem;z-index:1;position:relative}
+.hero p{font-size:1.2rem;margin-bottom:1rem;opacity:.95;z-index:1;position:relative}
+.cta-group{z-index:1;position:relative;margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.hero .cta-group,.contact .cta-group{width:min(100%,420px);margin-left:auto;margin-right:auto}
+.cta{background:#1e8449;color:#fff;padding:1rem 1.6rem;border-radius:10px;text-decoration:none;font-weight:bold;transition:.3s;z-index:1;position:relative;display:inline-block;animation:pulse 2s infinite}
+.hero .cta-group .cta,.hero .cta-group .cta-secondary,.contact .cta-group .cta,.contact .cta-group .cta-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:58px;width:100%;box-sizing:border-box;text-align:center}
+.cta:hover{background:#186a3b}
+.cta-secondary{background:#2471a3;color:#fff;padding:1rem 1.6rem;border-radius:10px;text-decoration:none;font-weight:bold;transition:.3s;z-index:1;position:relative;display:inline-block}
+.cta-secondary:hover{background:#1c5980}
+@media (max-width:600px){
+.hero{padding:3rem 1rem}
+.hero img{width:min(220px,75vw);height:auto}
+.hero h1{font-size:1.75rem}
+.hero .tagline{font-size:1rem}
+.hero p{font-size:1rem}
+.cta-group{flex-direction:column;align-items:center}
+.cta,.cta-secondary{width:90%;text-align:center;display:block;margin-left:0}
+.hero .cta-secondary{margin-left:0}
+.hero .cta-group,.contact .cta-group{width:min(100%,390px)}
+.hero .cta-group .cta,.hero .cta-group .cta-secondary,.contact .cta-group .cta,.contact .cta-group .cta-secondary{width:100%;max-width:calc(100vw - 2.5rem);padding:1rem 1.2rem;white-space:nowrap}
+}
+</style>
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
   <meta name="theme-color" content="#1abc9c">
 
 <!-- Senior Service Structured Data for SEO -->
@@ -48,14 +91,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@graph": [
     {
       "@type": "LocalBusiness",
+      "@id": "https://easytechvancouver.ca/#business",
       "name": "EasyTech Digital Solutions",
       "alternateName": "EasyTech",
       "legalName": "EasyTech Digital Solutions",
-      "image": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
-      "@id": "https://easytechvancouver.ca/#business",
       "url": "https://easytechvancouver.ca/",
+      "logo": "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp",
+      "image": [
+        "https://easytechvancouver.ca/images/easytech-share-1200x630.jpg",
+        "https://easytechvancouver.ca/images/easytech-logo-dark-text.webp"
+      ],
+      "description": "EasyTech provides friendly local IT support in Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, and Maple Ridge. TV & sound setup, Wi-Fi & network support, smart home devices, home office setup, senior-friendly tech guidance, and small business IT assistance.",
       "telephone": "+17789007135",
       "priceRange": "$$",
+      "foundingDate": "2026",
+      "founder": {
+        "@type": "Person",
+        "name": "Abhi",
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Microsoft 365 Certified: Fundamentals"
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Fortinet Network Security Expert (NSE 2) Certified Associate"
+          }
+        ]
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Coquitlam",
@@ -63,21 +126,100 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         "postalCode": "V3K 6X5",
         "addressCountry": "CA"
       },
-      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver","Port Moody","Port Coquitlam","Maple Ridge"],
-      "openingHours": ["Mo-Fr 09:00-22:00", "Sa-Su 10:00-22:00"],
-      "description": "Patient, senior-friendly tech support: in-home assistance with phones, computers, smart TVs, Wi-Fi setup, online safety, and honest advice on choosing the right device, for seniors across Metro Vancouver.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 49.24,
+        "longitude": -122.85
+      },
+      "hasMap": "https://maps.google.com/?cid=12231705935432378570",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "10:00",
+          "closes": "22:00"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Coquitlam",
+          "sameAs": "https://en.wikipedia.org/wiki/Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "Port Coquitlam",
+          "sameAs": "https://en.wikipedia.org/wiki/Port_Coquitlam"
+        },
+        {
+          "@type": "City",
+          "name": "North Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/North_Vancouver_(city)"
+        },
+        {
+          "@type": "City",
+          "name": "West Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/West_Vancouver"
+        },
+        {
+          "@type": "City",
+          "name": "Burnaby",
+          "sameAs": "https://en.wikipedia.org/wiki/Burnaby"
+        },
+        {
+          "@type": "City",
+          "name": "Vancouver",
+          "sameAs": "https://en.wikipedia.org/wiki/Vancouver"
+        },
+        {
+          "@type": "City",
+          "name": "Surrey",
+          "sameAs": "https://en.wikipedia.org/wiki/Surrey,_British_Columbia"
+        },
+        {
+          "@type": "City",
+          "name": "Maple Ridge",
+          "sameAs": "https://en.wikipedia.org/wiki/Maple_Ridge,_British_Columbia"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+17789007135",
+        "contactType": "Customer Service",
+        "areaServed": "CA-BC",
+        "availableLanguage": [
+          "en"
+        ]
+      },
       "sameAs": [
         "https://www.facebook.com/profile.php?id=61587106324816",
         "https://www.instagram.com/easytechvancouver",
+        "https://maps.google.com/?cid=12231705935432378570",
         "https://www.linkedin.com/company/easytech-digital-solutions/"
       ]
     },
     {
       "@type": "Service",
       "name": "Senior-Friendly Tech Support",
+      "url": "https://easytechvancouver.ca/senior-tech-support",
       "serviceType": "In-home senior tech assistance",
       "provider": {"@id": "https://easytechvancouver.ca/#business"},
-      "areaServed": ["Coquitlam","Burnaby","Surrey","Vancouver","Port Moody","Port Coquitlam","Maple Ridge"],
+      "areaServed": ["Coquitlam","Port Coquitlam","North Vancouver","West Vancouver","Burnaby","Vancouver","Surrey","Maple Ridge"],
       "description": "Patient senior tech support including phone/tablet help, computer assistance, Wi-Fi troubleshooting, Smart TV setup, scam protection education, and device-buying advice for seniors."
     },
     {
@@ -93,7 +235,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {
           "@type":"Question",
           "name":"Do you visit seniors at home?",
-          "acceptedAnswer": {"@type":"Answer","text":"Yes, EasyTech offers in-home visits across Coquitlam, Burnaby, Surrey, Vancouver, and Maple Ridge. We can often provide same-day assistance when available."}
+          "acceptedAnswer": {"@type":"Answer","text":"Yes, EasyTech offers in-home visits across Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, and Maple Ridge. We can often provide same-day assistance when available."}
         },
         {
           "@type":"Question",
@@ -273,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service-row testimonial-card">
           <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
           <p class="testimonial-quote">"Abhi provided fast support to get new Microsoft business emails and products up and running. Appreciated his guidance and support."</p>
-          <p class="testimonial-author">Lois N., <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener">Google Review</a></p>
+          <p class="testimonial-author">Lois N., <a href="https://maps.google.com/?cid=12231705935432378570" target="_blank" rel="noopener">Google Review</a></p>
       </div>
       <div class="service-row testimonial-card">
           <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
@@ -293,7 +435,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="faq-toggle">+</span>
       </button>
       <div class="faq-answer">
-        <p>Yes, EasyTech offers in-home visits across Coquitlam, Burnaby, Surrey, Vancouver, and Maple Ridge. We can often provide same-day assistance when available.</p>
+        <p>Yes, EasyTech offers in-home visits across Coquitlam, Port Coquitlam, North Vancouver, West Vancouver, Burnaby, Vancouver, Surrey, and Maple Ridge. We can often provide same-day assistance when available.</p>
       </div>
     </div>
 
@@ -416,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://www.facebook.com/profile.php?id=61587106324816" target="_blank" rel="noopener" aria-label="Visit EasyTech on Facebook">
           <img src="images/facebook-icon.png" alt="EasyTech Facebook" width="32" height="32" loading="lazy">
       </a>
-      <a href="https://www.google.com/maps/place/Easy+Tech/@49.1768374,-122.9222895,10z/data=!3m1!4b1!4m6!3m5!1s0x6781176df1c447d1:0xa9bfbfbdee7be8ca!8m2!3d49.1768374!4d-122.9222895!16s%2Fg%2F11m_4px_s6?hl=en&entry=ttu" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
+      <a href="https://maps.google.com/?cid=12231705935432378570" target="_blank" rel="noopener" aria-label="Visit EasyTech on Google Maps">
           <img src="images/google-icon.png" alt="EasyTech Google Business" width="32" height="32" loading="lazy">
       </a>
       <a href="https://www.instagram.com/easytechvancouver?igsh=dmF2dHprM3gwdDEx&utm_source=qr" target="_blank" rel="noopener" aria-label="Follow EasyTech on Instagram">

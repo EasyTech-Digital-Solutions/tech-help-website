@@ -29,12 +29,15 @@ if (scrollNav && navHamburger) {
   });
 }
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){entry.target.classList.add('visible');}
-  });
-},{threshold:0.08});
-document.querySelectorAll('.service-row, .tip-card').forEach(el => observer.observe(el));
+// Cards stay visible unless this runs, so they can't be left blank if the script fails to load.
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.add(entry.isIntersecting ? 'visible' : 'reveal');
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.service-row, .tip-card').forEach(el => observer.observe(el));
+}
 
 document.querySelectorAll('.tip-read-more').forEach(btn => {
   btn.addEventListener('click', function(){
