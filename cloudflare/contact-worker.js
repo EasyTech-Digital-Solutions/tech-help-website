@@ -13,13 +13,15 @@ const OPTIONS_HEADERS = {
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
+const GA4_MEASUREMENT_ID = 'G-T2SYY041LV';
+
 export default {
-  async fetch(request, env) {
-    return handleRequest(request, env);
+  async fetch(request, env, ctx) {
+    return handleRequest(request, env, ctx);
   },
 };
 
-async function handleRequest(request, env) {
+async function handleRequest(request, env, ctx) {
   const sendFrom = env?.SEND_FROM || 'admin@easytechvancouver.ca';
   const sendTo = env?.SEND_TO || 'admin@easytechvancouver.ca';
   const autoReplyEnabled = env?.AUTO_REPLY_ENABLED === 'true';
@@ -95,6 +97,13 @@ async function handleRequest(request, env) {
         <p>${toHtml(message)}</p>
       `,
     });
+
+    // Count the lead in GA4 from here, not the browser: ad blockers and strict
+    // privacy modes stop the page's tags but not this, so every inquiry email
+    // is also a generate_lead. Sent in the background; a failure never
+    // affects the visitor.
+    const leadEvent = sendGa4Lead(env, body).catch((error) => console.error('GA4 lead event failed', error));
+    if (ctx?.waitUntil) ctx.waitUntil(leadEvent);
 
     if (autoReplyEnabled) {
       // The lead has already been delivered, so a failed auto-reply must not tell the visitor their request failed.
@@ -185,6 +194,43 @@ async function sendGraphEmail(env, token, { from, to, replyTo, replyToName, subj
     const errorText = await response.text().catch(() => '');
     throw new Error(`Graph sendMail failed: ${response.status} ${errorText}`);
   }
+}
+
+// GA4 Measurement Protocol. Needs the GA4_API_SECRET Worker secret (GA4 Admin
+// > Data streams > web stream > Measurement Protocol API secrets); without it
+// this does nothing. The page passes its _ga client ID and current session ID
+// so the lead joins the visitor's session (source, landing page); when the
+// browser blocked GA there are none, and fresh IDs are used instead.
+export async function sendGa4Lead(env, body) {
+  if (!env?.GA4_API_SECRET) return;
+  const measurementId = env.GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID;
+  const clientId = /^\d{1,20}\.\d{1,20}$/.test(String(body.ga_client_id || ''))
+    ? body.ga_client_id
+    : `${crypto.getRandomValues(new Uint32Array(1))[0]}.${Math.floor(Date.now() / 1000)}`;
+  const params = {
+    lead_method: 'contact_form',
+    page_location: 'https://easytechvancouver.ca/contact',
+    engagement_time_msec: 1,
+  };
+  // GA4 shows Measurement Protocol events in Realtime and in session-based
+  // reports only when they carry a session ID, so start one when the
+  // browser had none (GA blocked).
+  params.session_id = /^\d{1,20}$/.test(String(body.ga_session_id || ''))
+    ? body.ga_session_id
+    : String(Math.floor(Date.now() / 1000));
+  // GA4_DEBUG=true (e.g. `wrangler deploy --var GA4_DEBUG:true`) shows the
+  // event in GA4 Admin > DebugView, for checking the setup.
+  if (env.GA4_DEBUG === 'true') params.debug_mode = true;
+
+  const url = `https://www.google-analytics.com/mp/collect?measurement_id=${encodeURIComponent(measurementId)}&api_secret=${encodeURIComponent(env.GA4_API_SECRET)}`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ client_id: clientId, events: [{ name: 'generate_lead', params }] }),
+  });
+  if (!response.ok) throw new Error(`GA4 Measurement Protocol: HTTP ${response.status}`);
+  // GA4 answers 2xx even for a wrong secret; this only proves the call went out.
+  console.log(`GA4 lead sent: HTTP ${response.status}, ${body.ga_session_id ? 'browser session' : 'new session'}${params.debug_mode ? ', debug' : ''}`);
 }
 
 function jsonResponse(payload, status) {

@@ -6,6 +6,7 @@ How the contact form works:
 - [cloudflare/contact-worker.js](cloudflare/contact-worker.js) handles that route. It checks the honeypot field, then verifies the Cloudflare Turnstile token.
 - The Worker sends a notification to `SEND_TO` (`admin@easytechvancouver.ca`) through the Microsoft Graph `sendMail` API. `Reply-To` is set to the customer, so replying goes to them.
 - If `AUTO_REPLY_ENABLED` is `"true"` (it is, in [wrangler.toml](wrangler.toml)), the Worker also sends the customer a branded confirmation.
+- Once the notification is sent, the Worker also records a `generate_lead` event in GA4 through the Measurement Protocol, so every inquiry email is counted as a lead even when the visitor's browser blocks Google Analytics. The page passes its `_ga` client ID and session ID so the lead joins the visit; the page itself no longer sends `generate_lead`.
 - Non-secret config lives in [wrangler.toml](wrangler.toml): `SEND_FROM`, `SEND_TO`, `AUTO_REPLY_ENABLED` and the two routes (`easytechvancouver.ca/api/contact` and `www.easytechvancouver.ca/api/contact`).
 
 ### 1. Microsoft Graph (mail sending)
@@ -26,16 +27,20 @@ npx wrangler secret put GRAPH_TENANT_ID
 npx wrangler secret put GRAPH_CLIENT_ID
 npx wrangler secret put GRAPH_CLIENT_SECRET
 npx wrangler secret put TURNSTILE_SECRET_KEY
+npx wrangler secret put GA4_API_SECRET
 npx wrangler deploy
 ```
 
-If any of these secrets is missing, the Worker returns a generic "Service temporarily unavailable" (HTTP 500) and nothing is sent. Details are not exposed to the browser.
+`GA4_API_SECRET` comes from GA4 Admin → Data streams → the easytechvancouver.ca web stream → Measurement Protocol API secrets → Create. Without it the form still works, but no lead is recorded in GA4. Deploy the Worker with this secret **before** publishing the matching `public/contact.html`, since that page no longer sends the event itself.
+
+If any of the other secrets is missing, the Worker returns a generic "Service temporarily unavailable" (HTTP 500) and nothing is sent. Details are not exposed to the browser.
 
 ### 4. Test
 
 1. Open `https://easytechvancouver.ca/contact`, complete Turnstile, and submit a real message.
 2. Confirm the notification arrives at `SEND_TO`, and that replying goes to the address you submitted.
 3. Confirm the auto-reply arrives at the address you submitted, with the logo showing.
+4. In GA4 → Reports → Realtime, a `generate_lead` event appears within a minute or two.
 
 A command-line test needs a real Turnstile token from the browser. With a missing or fake token the Worker returns a Turnstile error, which still proves the route is reachable:
 
