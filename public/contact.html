@@ -369,6 +369,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.getElementById('contactForm').addEventListener('focusin', loadTurnstile);
         document.getElementById('contactForm').addEventListener('pointerdown', loadTurnstile);
 
+        // GA's own cookies: _ga = "GA1.1.<client id>", _ga_<stream> holds the
+        // session ID ("GS1.1.<id>.…" or "GS2.1.s<id>$o…"). Empty when GA is blocked.
+        function gaCookie(name) {
+          const m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+          return m ? decodeURIComponent(m[1]) : '';
+        }
+        function gaClientId() {
+          const m = gaCookie('_ga').match(/^GA\d\.\d\.(\d+\.\d+)$/);
+          return m ? m[1] : '';
+        }
+        function gaSessionId() {
+          const v = gaCookie('_ga_T2SYY041LV');
+          const m = v.match(/^GS2\.\d\.s(\d+)/) || v.match(/^GS1\.\d\.(\d+)\./);
+          return m ? m[1] : '';
+        }
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
           e.preventDefault();
           const form = e.target;
@@ -423,7 +439,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             phone: form.phone.value,
             message: form.message.value,
             website: form.website.value,
-            'cf-turnstile-response': turnstileToken
+            'cf-turnstile-response': turnstileToken,
+            // Lets the server-side generate_lead join this visit in GA4.
+            ga_client_id: gaClientId(),
+            ga_session_id: gaSessionId()
           };
           fetch('/api/contact', {
             method: 'POST',
@@ -436,8 +455,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               ? await response.json().catch(() => ({}))
               : {};
             if (response.ok && result.success) {
-              window.dataLayer = window.dataLayer || [];
-              window.dataLayer.push({ event: 'generate_lead', lead_method: 'contact_form' });
+              // generate_lead is sent by the contact Worker (counted even when
+              // a blocker stops GA here), so it isn't pushed from the page too.
               const card = form.closest('.card') || form;
               card.innerHTML = '<div style="padding:2.5rem 1rem;text-align:center;">'
                 + '<div style="width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:#1abc9c;color:#fff;font-size:2rem;line-height:64px;">&#10003;</div>'
