@@ -218,6 +218,9 @@ export async function sendGa4Lead(env, body) {
   params.session_id = /^\d{1,20}$/.test(String(body.ga_session_id || ''))
     ? body.ga_session_id
     : String(Math.floor(Date.now() / 1000));
+  // GA4_DEBUG=true (e.g. `wrangler deploy --var GA4_DEBUG:true`) shows the
+  // event in GA4 Admin > DebugView, for checking the setup.
+  if (env.GA4_DEBUG === 'true') params.debug_mode = true;
 
   const url = `https://www.google-analytics.com/mp/collect?measurement_id=${encodeURIComponent(measurementId)}&api_secret=${encodeURIComponent(env.GA4_API_SECRET)}`;
   const response = await fetch(url, {
@@ -226,6 +229,8 @@ export async function sendGa4Lead(env, body) {
     body: JSON.stringify({ client_id: clientId, events: [{ name: 'generate_lead', params }] }),
   });
   if (!response.ok) throw new Error(`GA4 Measurement Protocol: HTTP ${response.status}`);
+  // GA4 answers 2xx even for a wrong secret; this only proves the call went out.
+  console.log(`GA4 lead sent: HTTP ${response.status}, ${body.ga_session_id ? 'browser session' : 'new session'}${params.debug_mode ? ', debug' : ''}`);
 }
 
 function jsonResponse(payload, status) {
