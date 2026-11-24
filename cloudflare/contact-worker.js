@@ -200,7 +200,7 @@ async function sendGraphEmail(env, token, { from, to, replyTo, replyToName, subj
 // > Data streams > web stream > Measurement Protocol API secrets); without it
 // this does nothing. The page passes its _ga client ID and current session ID
 // so the lead joins the visitor's session (source, landing page); when the
-// browser blocked GA there are none, and a fresh client ID is used instead.
+// browser blocked GA there are none, and fresh IDs are used instead.
 export async function sendGa4Lead(env, body) {
   if (!env?.GA4_API_SECRET) return;
   const measurementId = env.GA4_MEASUREMENT_ID || GA4_MEASUREMENT_ID;
@@ -212,7 +212,12 @@ export async function sendGa4Lead(env, body) {
     page_location: 'https://easytechvancouver.ca/contact',
     engagement_time_msec: 1,
   };
-  if (/^\d{1,20}$/.test(String(body.ga_session_id || ''))) params.session_id = body.ga_session_id;
+  // GA4 shows Measurement Protocol events in Realtime and in session-based
+  // reports only when they carry a session ID, so start one when the
+  // browser had none (GA blocked).
+  params.session_id = /^\d{1,20}$/.test(String(body.ga_session_id || ''))
+    ? body.ga_session_id
+    : String(Math.floor(Date.now() / 1000));
 
   const url = `https://www.google-analytics.com/mp/collect?measurement_id=${encodeURIComponent(measurementId)}&api_secret=${encodeURIComponent(env.GA4_API_SECRET)}`;
   const response = await fetch(url, {
